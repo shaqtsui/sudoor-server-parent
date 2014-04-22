@@ -15,7 +15,7 @@
 	<!-- The Basics -->
 	<groupId>net.gplatform</groupId>
 	<artifactId>infra-server-parent</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<properties>
@@ -110,7 +110,7 @@
 	<!-- Environment Settings -->
 	<scm>
 		<developerConnection>scm:git:https://github.com/xfcjscn/infra-server-parent.git</developerConnection>
-	  <tag>1.0.0</tag>
+	  <tag>HEAD</tag>
   </scm>
 
 	<repositories>
