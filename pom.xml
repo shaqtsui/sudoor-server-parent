@@ -108,6 +108,10 @@
 
 
 	<!-- Environment Settings -->
+	<scm>
+		<developerConnection>scm:git:https://github.com/xfcjscn/infra-server-parent.git</developerConnection>
+	</scm>
+
 	<repositories>
 		<repository>
 			<id>repository.springframework.maven.release</id>
