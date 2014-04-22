@@ -79,6 +79,19 @@
 
 
 	<!-- Build Settings -->
+	<!-- These plugins cannot customize build process, only used as tool scripts -->
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.5</version>
+				<configuration>
+
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
 
 	<!-- More Project Information -->

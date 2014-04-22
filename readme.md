@@ -1,8 +1,6 @@
+# Parent Project Profiles
 
-# Parent Project Profiles:
-
-
-## Customize Build Process:
+## Customize Build Process
 ### child (active by default in child project)   
 * Attach class
 * Attach source
@@ -14,11 +12,14 @@
 ### openshift
 * Set war output to webapps, so that the war will be deployed by openshift script
 
-
-## Provide Tool Script:
-
 ### runtime.appsvr
-* New Appsvr Config
+* Customize build:
+
+	on pre-integrate-test stage - start/run server
+	
+	on post-integrate-test stage - stop 
+
+* Appsvr Config, also can directly used as tool script
 
 ### runtime.appsvr.local
 * Local Existing Appsvr Config. **Note: this must active runtime.appsvr also**
@@ -32,3 +33,6 @@
 
 ### runtime.appsvr.debug
 * Debug Config. **Note: this must active runtime.appsvr also**
+
+# Tool Scripts:
+*maven-release-plugin
