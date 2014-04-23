@@ -43,7 +43,7 @@
 		<runtime.appsvr.configuration.servlet.users>tomcat:tomcat:manager-gui,admin-gui</runtime.appsvr.configuration.servlet.users>
 		<runtime.appsvr.configuration.servlet.port>8080</runtime.appsvr.configuration.servlet.port>
 		<runtime.appsvr.configuration.port.offset>0</runtime.appsvr.configuration.port.offset>
-		<runtime.appsvr.configuration.contextPath>${project.artifactId}-${project.version}</runtime.appsvr.configuration.contextPath>
+		<runtime.appsvr.configuration.contextPath>${project.artifactId}</runtime.appsvr.configuration.contextPath>
 		<runtime.appsvr.configuration.manager.username>username</runtime.appsvr.configuration.manager.username>
 		<runtime.appsvr.configuration.manager.password>password</runtime.appsvr.configuration.manager.password>
 		<runtime.appsvr.executions.pre-integration-test>start</runtime.appsvr.executions.pre-integration-test>
