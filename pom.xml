@@ -14,7 +14,7 @@
 
 	<!-- The Basics -->
 	<groupId>net.gplatform</groupId>
-	<artifactId>infra-server-parent</artifactId>
+	<artifactId>sudoor-server-parent</artifactId>
 	<version>1.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
@@ -96,7 +96,7 @@
 
 
 	<!-- More Project Information -->
-	<name>infra-server-parent</name>
+	<name>sudoor-server-parent</name>
 	<url>http://www.gplatform.net</url>
 	<developers>
 		<developer>
@@ -109,7 +109,7 @@
 
 	<!-- Environment Settings -->
 	<scm>
-		<developerConnection>scm:git:https://github.com/xfcjscn/infra-server-parent.git</developerConnection>
+		<developerConnection>scm:git:https://github.com/xfcjscn/sudoor-server-parent.git</developerConnection>
 	  <tag>HEAD</tag>
   </scm>
 
