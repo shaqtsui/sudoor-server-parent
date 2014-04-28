@@ -47,7 +47,6 @@
 		<runtime.appsvr.configuration.manager.username>username</runtime.appsvr.configuration.manager.username>
 		<runtime.appsvr.configuration.manager.password>password</runtime.appsvr.configuration.manager.password>
 		<runtime.appsvr.executions.pre-integration-test>start</runtime.appsvr.executions.pre-integration-test>
-		<runtime.appsvr.executions.post-integration-test>stop</runtime.appsvr.executions.post-integration-test>
 
 		<runtime.db.driver>org.postgresql.Driver</runtime.db.driver>
 		<runtime.db.url>jdbc:postgresql://localhost:5432/postgres</runtime.db.url>
@@ -81,6 +80,49 @@
 	<!-- Build Settings -->
 	<!-- These plugins cannot customize build process, only used as tool scripts -->
 	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.codehaus.cargo</groupId>
+					<artifactId>cargo-maven2-plugin</artifactId>
+					<configuration>
+						<container>
+							<type>${runtime.appsvr.container.type}</type>
+							<containerId>${runtime.appsvr.container.containerId}</containerId>
+							<timeout>1800000</timeout>
+							<home>${runtime.appsvr.container.home}</home>
+							<zipUrlInstaller>
+								<url>${runtime.appsvr.container.zipUrlInstaller.url}
+								</url>
+							</zipUrlInstaller>
+						</container>
+						<configuration>
+							<type>${runtime.appsvr.configuration.type}</type>
+							<home>${runtime.appsvr.configuration.home}</home>
+							<properties>
+								<cargo.port.offset>${runtime.appsvr.configuration.port.offset}</cargo.port.offset>
+								<cargo.jvmargs>${runtime.appsvr.configuration.jvmargs}</cargo.jvmargs>
+								<cargo.hostname>${runtime.appsvr.configuration.hostname}</cargo.hostname>
+								<cargo.protocol>${runtime.appsvr.configuration.protocol}</cargo.protocol>
+								<cargo.servlet.port>${runtime.appsvr.configuration.servlet.port}</cargo.servlet.port>
+								<cargo.servlet.users>${runtime.appsvr.configuration.servlet.users}</cargo.servlet.users>
+								<cargo.remote.username>${runtime.appsvr.configuration.manager.username}</cargo.remote.username>
+								<cargo.remote.password>${runtime.appsvr.configuration.manager.password}</cargo.remote.password>
+								<cargo.datasource.datasource.oracle>${runtime.appsvr.configuration.datasource.datasource.oracle}</cargo.datasource.datasource.oracle>
+
+								<cargo.tomcat.connector.clientAuth>false</cargo.tomcat.connector.clientAuth>
+								<cargo.tomcat.connector.sslProtocol>TLS</cargo.tomcat.connector.sslProtocol>
+								<cargo.tomcat.connector.keystoreFile>${runtime.key.store}</cargo.tomcat.connector.keystoreFile>
+								<cargo.tomcat.connector.keystorePass>${runtime.key.store.password}</cargo.tomcat.connector.keystorePass>
+								<cargo.tomcat.connector.keyAlias>${runtime.key.alias}</cargo.tomcat.connector.keyAlias>
+								<cargo.tomcat.httpSecure>true</cargo.tomcat.httpSecure>
+							</properties>
+						</configuration>
+						<deployer />
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -291,67 +333,12 @@
 					<plugin>
 						<groupId>org.codehaus.cargo</groupId>
 						<artifactId>cargo-maven2-plugin</artifactId>
-						<configuration>
-							<container>
-								<type>${runtime.appsvr.container.type}</type>
-								<containerId>${runtime.appsvr.container.containerId}</containerId>
-								<timeout>1800000</timeout>
-								<home>${runtime.appsvr.container.home}</home>
-								<zipUrlInstaller>
-									<url>${runtime.appsvr.container.zipUrlInstaller.url}
-									</url>
-								</zipUrlInstaller>
-							</container>
-							<configuration>
-								<type>${runtime.appsvr.configuration.type}</type>
-								<home>${runtime.appsvr.configuration.home}</home>
-								<properties>
-									<cargo.port.offset>${runtime.appsvr.configuration.port.offset}</cargo.port.offset>
-									<cargo.jvmargs>${runtime.appsvr.configuration.jvmargs}</cargo.jvmargs>
-									<cargo.hostname>${runtime.appsvr.configuration.hostname}</cargo.hostname>
-									<cargo.protocol>${runtime.appsvr.configuration.protocol}</cargo.protocol>
-									<cargo.servlet.port>${runtime.appsvr.configuration.servlet.port}</cargo.servlet.port>
-									<cargo.servlet.users>${runtime.appsvr.configuration.servlet.users}</cargo.servlet.users>
-									<cargo.remote.username>${runtime.appsvr.configuration.manager.username}</cargo.remote.username>
-									<cargo.remote.password>${runtime.appsvr.configuration.manager.password}</cargo.remote.password>
-									<cargo.datasource.datasource.oracle>${runtime.appsvr.configuration.datasource.datasource.oracle}</cargo.datasource.datasource.oracle>
-
-									<cargo.tomcat.connector.clientAuth>false</cargo.tomcat.connector.clientAuth>
-									<cargo.tomcat.connector.sslProtocol>TLS</cargo.tomcat.connector.sslProtocol>
-									<cargo.tomcat.connector.keystoreFile>${runtime.key.store}</cargo.tomcat.connector.keystoreFile>
-									<cargo.tomcat.connector.keystorePass>${runtime.key.store.password}</cargo.tomcat.connector.keystorePass>
-									<cargo.tomcat.connector.keyAlias>${runtime.key.alias}</cargo.tomcat.connector.keyAlias>
-									<cargo.tomcat.httpSecure>true</cargo.tomcat.httpSecure>
-								</properties>
-							</configuration>
-							<deployables>
-								<deployable>
-									<groupId>${project.groupId}</groupId>
-									<artifactId>${project.artifactId}</artifactId>
-									<type>${project.packaging}</type>
-									<properties>
-										<context>${runtime.appsvr.configuration.contextPath}</context>
-									</properties>
-									<pingURL>
-										${runtime.appsvr.configuration.protocol}://${runtime.appsvr.configuration.hostname}:${runtime.appsvr.configuration.servlet.port}/${runtime.appsvr.configuration.contextPath}
-									</pingURL>
-									<pingTimeout>60000</pingTimeout>
-								</deployable>
-							</deployables>
-						</configuration>
 						<executions>
 							<execution>
 								<id>start</id>
 								<phase>pre-integration-test</phase>
 								<goals>
 									<goal>${runtime.appsvr.executions.pre-integration-test}</goal>
-								</goals>
-							</execution>
-							<execution>
-								<id>stop</id>
-								<phase>post-integration-test</phase>
-								<goals>
-									<goal>${runtime.appsvr.executions.post-integration-test}</goal>
 								</goals>
 							</execution>
 						</executions>
@@ -428,6 +415,34 @@
 				</runtime.appsvr.configuration.jvmargs>
 				<runtime.appsvr.executions.pre-integration-test>run</runtime.appsvr.executions.pre-integration-test>
 			</properties>
+		</profile>
+
+		<profile>
+			<id>deploy.app</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.cargo</groupId>
+						<artifactId>cargo-maven2-plugin</artifactId>
+						<configuration>
+							<deployables>
+								<deployable>
+									<groupId>${project.groupId}</groupId>
+									<artifactId>${project.artifactId}</artifactId>
+									<type>${project.packaging}</type>
+									<properties>
+										<context>${runtime.appsvr.configuration.contextPath}</context>
+									</properties>
+									<pingURL>
+										${runtime.appsvr.configuration.protocol}://${runtime.appsvr.configuration.hostname}:${runtime.appsvr.configuration.servlet.port}/${runtime.appsvr.configuration.contextPath}
+									</pingURL>
+									<pingTimeout>60000</pingTimeout>
+								</deployable>
+							</deployables>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
 		</profile>
 	</profiles>
 
