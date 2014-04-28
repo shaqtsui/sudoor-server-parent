@@ -5,7 +5,7 @@
 		NOTE :
 			Parent POM ONLY maintain :
 				Project Info
-				Env Info
+				Env Info (DB, Server)
 				Profiles as utility
 				Global Dependency & Build Cfg
 
@@ -23,9 +23,11 @@
 
 		<org.testng.version>6.8.8</org.testng.version>
 		<com.h2database.version>1.4.177</com.h2database.version>
+		<org.postgresql.version>9.2-1003-jdbc4</org.postgresql.version>
+		<org.apache.tomcat.version>7.0.53</org.apache.tomcat.version>
 
 		<runtime.appsvr.container.type>installed</runtime.appsvr.container.type>
-		<runtime.appsvr.container.zipUrlInstaller.url>http://mirrors.cnnic.cn/apache/tomcat/tomcat-7/v7.0.53/bin/apache-tomcat-7.0.53.zip</runtime.appsvr.container.zipUrlInstaller.url>
+		<runtime.appsvr.container.zipUrlInstaller.url>http://mirrors.cnnic.cn/apache/tomcat/tomcat-7/v${org.apache.tomcat.version}/bin/apache-tomcat-${org.apache.tomcat.version}.zip</runtime.appsvr.container.zipUrlInstaller.url>
 		<runtime.appsvr.container.containerId>tomcat7x</runtime.appsvr.container.containerId>
 		<runtime.appsvr.container.home />
 		<runtime.appsvr.configuration.type>standalone</runtime.appsvr.configuration.type>
@@ -78,6 +80,25 @@
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<version>${com.h2database.version}</version>
+		</dependency>
+		<!-- this is the external DB, jdbc for postgreSQL -->
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>${org.postgresql.version}</version>
+		</dependency>
+		<!-- this is the server -->
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-catalina</artifactId>
+			<version>${org.apache.tomcat.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-coyote</artifactId>
+			<version>${org.apache.tomcat.version}</version>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 
