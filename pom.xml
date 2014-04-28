@@ -22,6 +22,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<org.testng.version>6.8.8</org.testng.version>
+		<com.h2database.version>1.4.177</com.h2database.version>
 
 		<runtime.appsvr.container.type>installed</runtime.appsvr.container.type>
 		<runtime.appsvr.container.zipUrlInstaller.url>http://mirrors.cnnic.cn/apache/tomcat/tomcat-7/v7.0.53/bin/apache-tomcat-7.0.53.zip</runtime.appsvr.container.zipUrlInstaller.url>
@@ -71,6 +72,12 @@
 			<artifactId>testng</artifactId>
 			<version>${org.testng.version}</version>
 			<scope>test</scope>
+		</dependency>
+		<!-- this is the embed DB -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>${com.h2database.version}</version>
 		</dependency>
 	</dependencies>
 
