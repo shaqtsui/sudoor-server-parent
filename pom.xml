@@ -3,6 +3,8 @@
 
 	<!--
 		NOTE :
+			Refer to sudoor-design/System Management Sketch for detailed Info.
+			
 			Parent POM ONLY maintain :
 				Project Info
 				Env Info (DB, Server)
