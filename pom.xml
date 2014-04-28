@@ -64,7 +64,7 @@
 		<runtime.key.size>1024</runtime.key.size>
 		<runtime.key.validity>100</runtime.key.validity>
 		<runtime.key.dname>cn=www.gplatform.net, ou=None, L=Seattle, ST=Shanghai, o=gplatform, c=CN</runtime.key.dname>
-		<runtime.key.store>${project.build.directory}/key/gplatformkeystore</runtime.key.store>
+		<runtime.key.store>${project.build.directory}/keys/gplatformkeystore</runtime.key.store>
 		<runtime.key.store.type>JKS</runtime.key.store.type>
 		<runtime.key.store.password>Shark1011</runtime.key.store.password>
 
