@@ -48,11 +48,9 @@
 		<runtime.appsvr.configuration.manager.password>password</runtime.appsvr.configuration.manager.password>
 		<runtime.appsvr.executions.pre-integration-test>start</runtime.appsvr.executions.pre-integration-test>
 
-		<runtime.db.driver>org.postgresql.Driver</runtime.db.driver>
-		<runtime.db.url>jdbc:postgresql://localhost:5432/postgres</runtime.db.url>
+		<runtime.db.driver>org.h2.Driver</runtime.db.driver>
+		<runtime.db.url>jdbc:h2:~/db/gplatform</runtime.db.url>
 		<runtime.db.jndi>jdbc/GPlatformDataSource</runtime.db.jndi>
-		<runtime.db.username>postgres</runtime.db.username>
-		<runtime.db.password>Shark1011</runtime.db.password>
 
 		<runtime.key.alias>gplatformkey</runtime.key.alias>
 		<runtime.key.algorithm>RSA</runtime.key.algorithm>
@@ -414,6 +412,17 @@
 					-Dfile.encoding=UTF-8
 				</runtime.appsvr.configuration.jvmargs>
 				<runtime.appsvr.executions.pre-integration-test>run</runtime.appsvr.executions.pre-integration-test>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>runtime.db.local</id>
+			<properties>
+				<runtime.db.driver>org.postgresql.Driver</runtime.db.driver>
+				<runtime.db.url>jdbc:postgresql://localhost:5432/postgres</runtime.db.url>
+				<runtime.db.jndi>jdbc/GPlatformDataSource</runtime.db.jndi>
+				<runtime.db.username>postgres</runtime.db.username>
+				<runtime.db.password>Shark1011</runtime.db.password>
 			</properties>
 		</profile>
 
