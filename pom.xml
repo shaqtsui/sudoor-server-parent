@@ -27,6 +27,9 @@
 		<com.h2database.version>1.4.177</com.h2database.version>
 		<org.postgresql.version>9.2-1003-jdbc4</org.postgresql.version>
 		<org.apache.tomcat.version>7.0.53</org.apache.tomcat.version>
+		
+		<!-- used by license-maven-plugin -->
+		<license.licenseName>gpl_v2</license.licenseName>
 
 		<runtime.appsvr.container.type>installed</runtime.appsvr.container.type>
 		<runtime.appsvr.container.zipUrlInstaller.url>http://mirrors.cnnic.cn/apache/tomcat/tomcat-7/v${org.apache.tomcat.version}/bin/apache-tomcat-${org.apache.tomcat.version}.zip</runtime.appsvr.container.zipUrlInstaller.url>
@@ -156,9 +159,6 @@
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>license-maven-plugin</artifactId>
 				<version>1.6</version>
-				<configuration>
-					<licenseName>gpl_v2</licenseName>
-				</configuration>
 				<executions>
 					<execution>
 						<id>download-licenses</id>
