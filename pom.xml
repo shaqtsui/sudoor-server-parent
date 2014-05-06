@@ -156,20 +156,6 @@
 		</pluginManagement>
 		<plugins>
 			<plugin>
-				<groupId>com.lazerycode.jmeter</groupId>
-				<artifactId>jmeter-maven-plugin</artifactId>
-				<version>1.9.0</version>
-				<executions>
-					<execution>
-						<id>jmeter-tests</id>
-						<phase>verify</phase>
-						<goals>
-							<goal>jmeter</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>license-maven-plugin</artifactId>
 				<version>1.6</version>
@@ -372,6 +358,28 @@
 	</pluginRepositories>
 
 	<profiles>
+		<profile>
+			<id>performanceTest</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.lazerycode.jmeter</groupId>
+						<artifactId>jmeter-maven-plugin</artifactId>
+						<version>1.9.0</version>
+						<executions>
+							<execution>
+								<id>jmeter-tests</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>jmeter</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
 		<profile>
 			<id>integrationTest</id>
 			<build>
