@@ -519,6 +519,12 @@
 					${runtime.appsvr.configuration.jvmargs.common}
 					${runtime.appsvr.configuration.jvmargs.debug}
 				</runtime.appsvr.configuration.jvmargs>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>runtime.appsvr.nostop</id>
+			<properties>
 				<runtime.appsvr.executions.pre-integration-test>run</runtime.appsvr.executions.pre-integration-test>
 			</properties>
 		</profile>
