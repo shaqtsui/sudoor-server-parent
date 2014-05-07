@@ -16,8 +16,6 @@
 * Customize build:
 
 	on pre-integrate-test stage - start/run server
-	
-	on post-integrate-test stage - stop 
 
 * Appsvr Config, also can directly used as tool script
 
@@ -34,5 +32,25 @@
 ### runtime.appsvr.debug
 * Debug Config. **Note: this must active runtime.appsvr also**
 
+### runtime.appsvr.nostop
+* Start Server & don't stop it. **Note: this must active runtime.appsvr also**
+
 # Tool Scripts:
 *maven-release-plugin
+
+
+# Usage Example
+	
+Run Server & Deploy:
+	mvn install -P runtime.appsvr,deploy.app,runtime.appsvr.nostop
+	
+Run Server in Debug & Deploy:
+	mvn install -P runtime.appsvr,deploy.app,runtime.appsvr.nostop,runtime.appsvr.debug
+	
+Start Server & Integration Test:
+	mvn install -P runtime.appsvr,deploy.app,test.integration
+
+Start Server & Performance Test:	
+	mvn install -P runtime.appsvr,deploy.app,test.performance
+	
+	
