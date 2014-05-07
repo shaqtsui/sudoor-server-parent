@@ -40,7 +40,20 @@
 		<!-- properties -->
 		<runtime.appsvr.configuration.hostname>localhost</runtime.appsvr.configuration.hostname>
 		<runtime.appsvr.configuration.protocol>http</runtime.appsvr.configuration.protocol>
-		<runtime.appsvr.configuration.jvmargs>-Dfile.encoding=UTF-8</runtime.appsvr.configuration.jvmargs>
+		<runtime.appsvr.configuration.jvmargs.common>
+			-Xms512m
+			-Xmx4g
+			-Dfile.encoding=UTF-8
+		</runtime.appsvr.configuration.jvmargs.common>
+		<runtime.appsvr.configuration.jvmargs.debug>
+			-Xdebug
+			-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=4001
+			-Xnoagent
+			-Djava.compiler=NONE
+		</runtime.appsvr.configuration.jvmargs.debug>
+		<runtime.appsvr.configuration.jvmargs>
+			${runtime.appsvr.configuration.jvmargs.common}
+		</runtime.appsvr.configuration.jvmargs>
 		<runtime.appsvr.configuration.datasource.datasource.oracle>
 			cargo.datasource.driver=${runtime.db.driver}|
 			cargo.datasource.url=${runtime.db.url}|
@@ -503,11 +516,8 @@
 			<id>runtime.appsvr.debug</id>
 			<properties>
 				<runtime.appsvr.configuration.jvmargs>
-					-Xdebug
-					-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=4001
-					-Xnoagent
-					-Djava.compiler=NONE
-					-Dfile.encoding=UTF-8
+					${runtime.appsvr.configuration.jvmargs.common}
+					${runtime.appsvr.configuration.jvmargs.debug}
 				</runtime.appsvr.configuration.jvmargs>
 				<runtime.appsvr.executions.pre-integration-test>run</runtime.appsvr.executions.pre-integration-test>
 			</properties>
