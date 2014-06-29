@@ -20,6 +20,13 @@
 	<version>1.0.4-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
+	<parent>
+		<groupId>io.spring.platform</groupId>
+		<artifactId>platform-bom</artifactId>
+		<version>1.0.0.RELEASE</version>
+		<relativePath />
+	</parent>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
