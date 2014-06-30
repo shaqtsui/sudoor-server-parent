@@ -15,6 +15,13 @@
 	-->
 
 	<!-- The Basics -->
+	<parent>
+		<groupId>io.spring.platform</groupId>
+		<artifactId>platform-bom</artifactId>
+		<version>1.0.0.RELEASE</version>
+		<relativePath />
+	</parent>
+
 	<groupId>net.gplatform</groupId>
 	<artifactId>sudoor-server-parent</artifactId>
 	<version>1.0.4-SNAPSHOT</version>
@@ -27,7 +34,7 @@
 		<com.h2database.version>1.4.177</com.h2database.version>
 		<org.postgresql.version>9.2-1003-jdbc4</org.postgresql.version>
 		<org.apache.tomcat.version>7.0.54</org.apache.tomcat.version>
-		
+
 		<!-- used by license-maven-plugin -->
 		<license.licenseName>gpl_v2</license.licenseName>
 
@@ -338,6 +345,11 @@
 	</scm>
 
 	<repositories>
+		<repository>
+			<id>maven-net-cn</id>
+			<name>Maven China Mirror</name>
+			<url>http://maven.net.cn/content/groups/public/</url>
+		</repository>
 		<repository>
 			<id>repository.springframework.maven.release</id>
 			<name>Spring Framework Maven Release Repository</name>
