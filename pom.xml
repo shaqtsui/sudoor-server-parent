@@ -471,8 +471,9 @@
 			<id>runtime.appsvr.wildfly</id>
 			<properties>
 				<runtime.appsvr.container.containerId>wildfly8x</runtime.appsvr.container.containerId>
-				<runtime.appsvr.container.home>D:/dev/wildfly-8.1.0.Final</runtime.appsvr.container.home>
+				<runtime.appsvr.container.home>d:/dev/wildfly-8.1.0.Final</runtime.appsvr.container.home>
 				<runtime.appsvr.container.zipUrlInstaller.url>http://download.jboss.org/wildfly/8.1.0.Final/wildfly-8.1.0.Final.zip</runtime.appsvr.container.zipUrlInstaller.url>
+				<runtime.appsvr.configuration.home>d:/dev/wildfly-8.1.0.Final</runtime.appsvr.configuration.home>
 			</properties>
 		</profile>
 		
@@ -482,6 +483,7 @@
 				<runtime.appsvr.container.containerId>tomcat7x</runtime.appsvr.container.containerId>
 				<runtime.appsvr.container.home>c:/apps/tomcat</runtime.appsvr.container.home>
 				<runtime.appsvr.container.zipUrlInstaller.url>http://mirrors.cnnic.cn/apache/tomcat/tomcat-7/v${org.apache.tomcat.version}/bin/apache-tomcat-${org.apache.tomcat.version}.zip</runtime.appsvr.container.zipUrlInstaller.url>
+				<runtime.appsvr.configuration.home>c:/apps/tomcat</runtime.appsvr.configuration.home>
 			</properties>
 		</profile>
 		
@@ -489,7 +491,9 @@
 			<id>runtime.appsvr.new</id>
 			<properties>
 				<runtime.appsvr.container.type>installed</runtime.appsvr.container.type>
-				<runtime.appsvr.configuration.type>standalone</runtime.appsvr.configuration.type>
+				<runtime.appsvr.container.home />
+				<runtime.appsvr.configuration.type>standalone</runtime.appsvr.configuration.type>	
+				<runtime.appsvr.configuration.home />
 			</properties>
 		</profile>
 
