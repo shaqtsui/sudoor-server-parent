@@ -590,35 +590,7 @@
 				<runtime.db.password>Shark1011</runtime.db.password>
 			</properties>
 		</profile>
-
-		<profile>
-			<id>deploy.app</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.codehaus.cargo</groupId>
-						<artifactId>cargo-maven2-plugin</artifactId>
-						<configuration>
-							<deployables>
-								<deployable>
-									<groupId>${project.groupId}</groupId>
-									<artifactId>${project.artifactId}</artifactId>
-									<type>${project.packaging}</type>
-									<properties>
-										<context>${runtime.appsvr.configuration.contextPath}</context>
-									</properties>
-									<pingURL>
-										${runtime.appsvr.configuration.protocol}://${runtime.appsvr.configuration.hostname}:${runtime.appsvr.configuration.servlet.port}/${runtime.appsvr.configuration.contextPath}
-									</pingURL>
-									<pingTimeout>60000</pingTimeout>
-								</deployable>
-							</deployables>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
+		
 	</profiles>
-
 
 </project>
