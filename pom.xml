@@ -155,9 +155,9 @@
 								<cargo.remote.username>${runtime.appsvr.configuration.manager.username}</cargo.remote.username>
 								<cargo.remote.password>${runtime.appsvr.configuration.manager.password}</cargo.remote.password>
 								
-								<!-- wildfly don't support datasource -->
+								<!-- wildfly 8.1 don't support datasource, wildfly 8.0 can not find driver class -->
 								<!-- 
-								<cargo.datasource.datasource.oracle>${runtime.appsvr.configuration.datasource.datasource.oracle}</cargo.datasource.datasource.oracle>
+								<cargo.datasource.datasource.datasource1>${runtime.appsvr.configuration.datasource.datasource.oracle}</cargo.datasource.datasource.datasource1>
 								 -->
 								 
 								<cargo.tomcat.connector.clientAuth>false</cargo.tomcat.connector.clientAuth>
