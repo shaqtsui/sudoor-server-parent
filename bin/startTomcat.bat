@@ -1,2 +1,2 @@
 cd ..
-mvn -P runtime.appsvr,runtime.appsvr.tomcat,runtime.appsvr.new,runtime.appsvr.nostop,deploy.app install %1
+mvn -P runtime.appsvr.run,runtime.appsvr.tomcat,runtime.appsvr.new install %1

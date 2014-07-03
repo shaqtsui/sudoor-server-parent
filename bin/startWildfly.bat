@@ -1,2 +1,2 @@
 cd ..
-mvn -P runtime.appsvr,runtime.appsvr.wildfly,runtime.appsvr.local,runtime.appsvr.nostop,deploy.app install %1
+mvn -P runtime.appsvr.run,runtime.appsvr.wildfly,runtime.appsvr.local install %1
