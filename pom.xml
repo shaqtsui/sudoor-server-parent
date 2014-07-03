@@ -63,7 +63,7 @@
 			cargo.datasource.username=${runtime.db.username}|
 			cargo.datasource.password=${runtime.db.password}
 		</runtime.appsvr.configuration.datasource.datasource.oracle>
-		<runtime.appsvr.configuration.servlet.users>tomcat:tomcat:manager-gui,admin-gui</runtime.appsvr.configuration.servlet.users>
+		
 		<runtime.appsvr.configuration.servlet.port>8080</runtime.appsvr.configuration.servlet.port>
 		<runtime.appsvr.configuration.port.offset>0</runtime.appsvr.configuration.port.offset>
 		<runtime.appsvr.configuration.contextPath>${project.artifactId}</runtime.appsvr.configuration.contextPath>
@@ -472,7 +472,12 @@
 			<properties>
 				<runtime.appsvr.container.containerId>wildfly8x</runtime.appsvr.container.containerId>
 				<runtime.appsvr.container.home>d:/dev/wildfly-8.1.0.Final</runtime.appsvr.container.home>
+				<!-- 
 				<runtime.appsvr.container.zipUrlInstaller.url>http://download.jboss.org/wildfly/8.1.0.Final/wildfly-8.1.0.Final.zip</runtime.appsvr.container.zipUrlInstaller.url>
+				 -->
+				 <!-- cargo only support wildfly 8.0.0 -->
+				<runtime.appsvr.container.zipUrlInstaller.url>http://download.jboss.org/wildfly/8.0.0.Final/wildfly-8.0.0.Final.zip</runtime.appsvr.container.zipUrlInstaller.url>
+				
 				<runtime.appsvr.configuration.home>d:/dev/wildfly-8.1.0.Final</runtime.appsvr.configuration.home>
 			</properties>
 		</profile>
@@ -484,6 +489,8 @@
 				<runtime.appsvr.container.home>c:/apps/tomcat</runtime.appsvr.container.home>
 				<runtime.appsvr.container.zipUrlInstaller.url>http://mirrors.cnnic.cn/apache/tomcat/tomcat-7/v${org.apache.tomcat.version}/bin/apache-tomcat-${org.apache.tomcat.version}.zip</runtime.appsvr.container.zipUrlInstaller.url>
 				<runtime.appsvr.configuration.home>c:/apps/tomcat</runtime.appsvr.configuration.home>
+				
+				<runtime.appsvr.configuration.servlet.users>tomcat:tomcat:manager-gui,admin-gui</runtime.appsvr.configuration.servlet.users>
 			</properties>
 		</profile>
 		
