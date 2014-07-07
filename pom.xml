@@ -9,7 +9,7 @@
 				Project Info
 				Env Info (DB, Server)
 				Profiles as utility
-				Global Build Cfg
+				Global SDLC Build Cfg
 
 			Regarding to Build Info need to be maintained in child POM.
 	-->
