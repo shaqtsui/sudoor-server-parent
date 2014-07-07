@@ -7,7 +7,9 @@
 			
 			Parent POM ONLY maintain :
 				Project Info
-				Env Info (DB, Server)
+				Env Info & Management(DB, Server)
+					This normally used to manage existing Env via cargo which can be used in whole SDLC flow.
+					Spring boot also manage Env, but it only provide basic manage which can only be used in development.
 				Profiles as utility
 				Global SDLC Build Cfg
 
