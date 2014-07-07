@@ -31,7 +31,8 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
+		<java.version>1.7</java.version>
+		
 		<org.testng.version>6.8.8</org.testng.version>
 		<com.h2database.version>1.4.177</com.h2database.version>
 		<org.postgresql.version>9.2-1003-jdbc4</org.postgresql.version>
