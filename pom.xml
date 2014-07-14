@@ -112,47 +112,6 @@
 	<!-- Build Settings -->
 	<!-- These plugins cannot customize build process, only used as tool scripts -->
 	<build>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.codehaus.cargo</groupId>
-					<artifactId>cargo-maven2-plugin</artifactId>
-					<configuration>
-						<container>
-							<type>${runtime.appsvr.container.type}</type>
-							<containerId>${runtime.appsvr.container.containerId}</containerId>
-							<timeout>1800000</timeout>
-							<home>${runtime.appsvr.container.home}</home>
-							<zipUrlInstaller>
-								<url>${runtime.appsvr.container.zipUrlInstaller.url}
-								</url>
-							</zipUrlInstaller>
-						</container>
-						<configuration>
-							<type>${runtime.appsvr.configuration.type}</type>
-							<home>${runtime.appsvr.configuration.home}</home>
-							<properties>
-								<cargo.port.offset>${runtime.appsvr.configuration.port.offset}</cargo.port.offset>
-								<cargo.jvmargs>${runtime.appsvr.configuration.jvmargs}</cargo.jvmargs>
-								<cargo.hostname>${runtime.appsvr.configuration.hostname}</cargo.hostname>
-								<cargo.protocol>${runtime.appsvr.configuration.protocol}</cargo.protocol>
-								<cargo.servlet.port>${runtime.appsvr.configuration.servlet.port}</cargo.servlet.port>
-								<cargo.servlet.users>${runtime.appsvr.configuration.servlet.users}</cargo.servlet.users>
-								<cargo.remote.username>${runtime.appsvr.configuration.manager.username}</cargo.remote.username>
-								<cargo.remote.password>${runtime.appsvr.configuration.manager.password}</cargo.remote.password>
-								<cargo.tomcat.connector.clientAuth>false</cargo.tomcat.connector.clientAuth>
-								<cargo.tomcat.connector.sslProtocol>TLS</cargo.tomcat.connector.sslProtocol>
-								<cargo.tomcat.connector.keystoreFile>${runtime.key.store}</cargo.tomcat.connector.keystoreFile>
-								<cargo.tomcat.connector.keystorePass>${runtime.key.store.password}</cargo.tomcat.connector.keystorePass>
-								<cargo.tomcat.connector.keyAlias>${runtime.key.alias}</cargo.tomcat.connector.keyAlias>
-								<cargo.tomcat.httpSecure>true</cargo.tomcat.httpSecure>
-							</properties>
-						</configuration>
-						<deployer />
-					</configuration>
-				</plugin>
-			</plugins>
-		</pluginManagement>
 		<plugins>
 			<!-- 
 			<plugin>
@@ -222,6 +181,43 @@
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>sonar-maven-plugin</artifactId>
 				<version>2.2</version>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.cargo</groupId>
+				<artifactId>cargo-maven2-plugin</artifactId>
+				<configuration>
+					<container>
+						<type>${runtime.appsvr.container.type}</type>
+						<containerId>${runtime.appsvr.container.containerId}</containerId>
+						<timeout>1800000</timeout>
+						<home>${runtime.appsvr.container.home}</home>
+						<zipUrlInstaller>
+							<url>${runtime.appsvr.container.zipUrlInstaller.url}
+							</url>
+						</zipUrlInstaller>
+					</container>
+					<configuration>
+						<type>${runtime.appsvr.configuration.type}</type>
+						<home>${runtime.appsvr.configuration.home}</home>
+						<properties>
+							<cargo.port.offset>${runtime.appsvr.configuration.port.offset}</cargo.port.offset>
+							<cargo.jvmargs>${runtime.appsvr.configuration.jvmargs}</cargo.jvmargs>
+							<cargo.hostname>${runtime.appsvr.configuration.hostname}</cargo.hostname>
+							<cargo.protocol>${runtime.appsvr.configuration.protocol}</cargo.protocol>
+							<cargo.servlet.port>${runtime.appsvr.configuration.servlet.port}</cargo.servlet.port>
+							<cargo.servlet.users>${runtime.appsvr.configuration.servlet.users}</cargo.servlet.users>
+							<cargo.remote.username>${runtime.appsvr.configuration.manager.username}</cargo.remote.username>
+							<cargo.remote.password>${runtime.appsvr.configuration.manager.password}</cargo.remote.password>
+							<cargo.tomcat.connector.clientAuth>false</cargo.tomcat.connector.clientAuth>
+							<cargo.tomcat.connector.sslProtocol>TLS</cargo.tomcat.connector.sslProtocol>
+							<cargo.tomcat.connector.keystoreFile>${runtime.key.store}</cargo.tomcat.connector.keystoreFile>
+							<cargo.tomcat.connector.keystorePass>${runtime.key.store.password}</cargo.tomcat.connector.keystorePass>
+							<cargo.tomcat.connector.keyAlias>${runtime.key.alias}</cargo.tomcat.connector.keyAlias>
+							<cargo.tomcat.httpSecure>true</cargo.tomcat.httpSecure>
+						</properties>
+					</configuration>
+					<deployer />
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
@@ -468,48 +464,6 @@
 		</profile>
 
 		<profile>
-			<id>runtime.appsvr.start</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.codehaus.cargo</groupId>
-						<artifactId>cargo-maven2-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>start</id>
-								<phase>pre-integration-test</phase>
-								<goals>
-									<goal>start</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-
-		<profile>
-			<id>runtime.appsvr.run</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.codehaus.cargo</groupId>
-						<artifactId>cargo-maven2-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>start</id>
-								<phase>pre-integration-test</phase>
-								<goals>
-									<goal>run</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-
-		<profile>
 			<id>runtime.appsvr.wildfly</id>
 			<properties>
 				<runtime.appsvr.container.containerId>wildfly8x</runtime.appsvr.container.containerId>
@@ -528,9 +482,9 @@
 			<id>runtime.appsvr.tomcat</id>
 			<properties>
 				<runtime.appsvr.container.containerId>tomcat7x</runtime.appsvr.container.containerId>
-				<runtime.appsvr.container.home>c:/apps/tomcat</runtime.appsvr.container.home>
+				<runtime.appsvr.container.home>d:/dev/apache-tomcat-7.0.54</runtime.appsvr.container.home>
 				<runtime.appsvr.container.zipUrlInstaller.url>http://mirrors.cnnic.cn/apache/tomcat/tomcat-7/v${org.apache.tomcat.version}/bin/apache-tomcat-${org.apache.tomcat.version}.zip</runtime.appsvr.container.zipUrlInstaller.url>
-				<runtime.appsvr.configuration.home>c:/apps/tomcat</runtime.appsvr.configuration.home>
+				<runtime.appsvr.configuration.home>d:/dev/apache-tomcat-7.0.54</runtime.appsvr.configuration.home>
 
 				<runtime.appsvr.configuration.servlet.users>tomcat:tomcat:manager-gui,admin-gui</runtime.appsvr.configuration.servlet.users>
 			</properties>
