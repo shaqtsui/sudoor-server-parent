@@ -35,7 +35,7 @@
 		
 		<org.testng.version>6.8.8</org.testng.version>
 		<com.h2database.version>1.4.177</com.h2database.version>
-		<org.postgresql.version>9.3-1102-jdbc41</org.postgresql.version>
+		<org.postgresql.version>9.3-1101-jdbc41</org.postgresql.version>
 		<org.apache.tomcat.version>7.0.54</org.apache.tomcat.version>
 
 		<!-- used by license-maven-plugin -->
