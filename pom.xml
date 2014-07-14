@@ -62,6 +62,7 @@
 		<runtime.appsvr.configuration.jvmargs.hotdeploy>
 			-javaagent:${artifact.hotdeploy.jrebel.home}/jrebel.jar
 			-Drebel.jersey_plugin=true
+			-Drebel.spring_data_plugin=true
 		</runtime.appsvr.configuration.jvmargs.hotdeploy>
 		<runtime.appsvr.configuration.jvmargs>
 			${runtime.appsvr.configuration.jvmargs.common}
