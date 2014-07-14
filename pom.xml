@@ -12,6 +12,7 @@
 					Spring boot also manage Env, but it only provide basic manage which can only be used in development.
 				Profiles as utility
 				Global SDLC Build Cfg
+					customize artifact
 
 			Regarding to Build Info need to be maintained in child POM.
 	-->
@@ -32,7 +33,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.7</java.version>
-		
+
 		<org.testng.version>6.8.8</org.testng.version>
 		<com.h2database.version>1.4.177</com.h2database.version>
 		<org.postgresql.version>9.3-1101-jdbc41</org.postgresql.version>
@@ -41,7 +42,9 @@
 		<!-- used by license-maven-plugin -->
 		<license.licenseName>gpl_v2</license.licenseName>
 
-
+		<!-- customize artifact -->
+		<artifact.hotdeploy.jrebel.home>d:/dev/jrebel</artifact.hotdeploy.jrebel.home>
+		
 		<!-- properties -->
 		<runtime.appsvr.configuration.hostname>localhost</runtime.appsvr.configuration.hostname>
 		<runtime.appsvr.configuration.protocol>http</runtime.appsvr.configuration.protocol>
@@ -56,6 +59,10 @@
 			-Xnoagent
 			-Djava.compiler=NONE
 		</runtime.appsvr.configuration.jvmargs.debug>
+		<runtime.appsvr.configuration.jvmargs.hotdeploy>
+			-javaagent:${artifact.hotdeploy.jrebel.home}/jrebel.jar
+			-Drebel.jersey_plugin=true
+		</runtime.appsvr.configuration.jvmargs.hotdeploy>
 		<runtime.appsvr.configuration.jvmargs>
 			${runtime.appsvr.configuration.jvmargs.common}
 		</runtime.appsvr.configuration.jvmargs>
@@ -397,6 +404,35 @@
 
 	<profiles>
 		<profile>
+			<id>artifact.hotdeploy</id>
+			<properties>
+				<runtime.appsvr.configuration.jvmargs>
+					${runtime.appsvr.configuration.jvmargs.common}
+					${runtime.appsvr.configuration.jvmargs.debug}
+					${runtime.appsvr.configuration.jvmargs.hotdeploy}
+				</runtime.appsvr.configuration.jvmargs>
+			</properties>
+			<build>
+				<plugins>
+					<!-- support change without restart for dev stage -->
+					<plugin>
+						<groupId>org.zeroturnaround</groupId>
+						<artifactId>jrebel-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>generate-rebel-xml</id>
+								<phase>process-resources</phase>
+								<goals>
+									<goal>generate</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<profile>
 			<id>test.performance</id>
 			<build>
 				<plugins>
@@ -603,8 +639,6 @@
 				</runtime.appsvr.configuration.jvmargs>
 			</properties>
 		</profile>
-
-
 
 		<profile>
 			<id>runtime.db.local</id>
