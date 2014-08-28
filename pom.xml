@@ -19,13 +19,12 @@
 
 	<!-- The Basics -->
 	<parent>
-		<groupId>io.spring.platform</groupId>
-		<artifactId>platform-bom</artifactId>
-		<version>1.0.1.RELEASE</version>
+		<groupId>net.gplatform</groupId>
+		<artifactId>gplatform-parent</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
 		<relativePath />
 	</parent>
 
-	<groupId>net.gplatform</groupId>
 	<artifactId>sudoor-server-parent</artifactId>
 	<version>1.0.5-SNAPSHOT</version>
 	<packaging>pom</packaging>
