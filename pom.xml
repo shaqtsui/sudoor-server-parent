@@ -376,7 +376,8 @@
 				</plugins>
 			</build>
 		</profile>
-
+		
+		<!-- new runtime profiles only provider env info, NO action will be taken here. Pls use mvn cargo:xxx to perform action-->
 		<profile>
 			<id>runtime.appsvr.wildfly</id>
 			<properties>
