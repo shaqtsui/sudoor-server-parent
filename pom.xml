@@ -397,9 +397,9 @@
 			<id>runtime.appsvr.tomcat</id>
 			<properties>
 				<runtime.appsvr.container.containerId>tomcat7x</runtime.appsvr.container.containerId>
-				<runtime.appsvr.container.home>/dev/apache-tomcat-7.0.54</runtime.appsvr.container.home>
-				<runtime.appsvr.container.zipUrlInstaller.url>http://mirrors.cnnic.cn/apache/tomcat/tomcat-7/v${org.apache.tomcat.version}/bin/apache-tomcat-${org.apache.tomcat.version}.zip</runtime.appsvr.container.zipUrlInstaller.url>
-				<runtime.appsvr.configuration.home>/dev/apache-tomcat-7.0.54</runtime.appsvr.configuration.home>
+				<runtime.appsvr.container.home>/dev/apache-tomcat-${org.apache.tomcat.version}</runtime.appsvr.container.home>
+				<runtime.appsvr.container.zipUrlInstaller.url>http://archive.apache.org/dist/tomcat/tomcat-7/v${org.apache.tomcat.version}/bin/apache-tomcat-${org.apache.tomcat.version}.zip</runtime.appsvr.container.zipUrlInstaller.url>
+				<runtime.appsvr.configuration.home>/dev/apache-tomcat-${org.apache.tomcat.version}</runtime.appsvr.configuration.home>
 
 				<runtime.appsvr.configuration.servlet.users>tomcat:tomcat:manager-gui,admin-gui</runtime.appsvr.configuration.servlet.users>
 			</properties>
