@@ -383,12 +383,12 @@
 			<properties>
 				<runtime.appsvr.container.containerId>wildfly8x</runtime.appsvr.container.containerId>
 				<runtime.appsvr.container.home>/dev/wildfly-8.1.0.Final</runtime.appsvr.container.home>
-				<!-- 
+				<!-- -->
 				<runtime.appsvr.container.zipUrlInstaller.url>http://download.jboss.org/wildfly/8.1.0.Final/wildfly-8.1.0.Final.zip</runtime.appsvr.container.zipUrlInstaller.url>
-				 -->
-				 <!-- cargo only support wildfly 8.0.0 -->
+				 
+				 <!-- cargo only support wildfly 8.0.0 
 				<runtime.appsvr.container.zipUrlInstaller.url>http://download.jboss.org/wildfly/8.0.0.Final/wildfly-8.0.0.Final.zip</runtime.appsvr.container.zipUrlInstaller.url>
-
+				-->
 				<runtime.appsvr.configuration.home>/dev/wildfly-8.1.0.Final/standalone</runtime.appsvr.configuration.home>
 			</properties>
 		</profile>
