@@ -126,10 +126,10 @@
 						<containerId>${runtime.appsvr.container.containerId}</containerId>
 						<timeout>1800000</timeout>
 						<home>${runtime.appsvr.container.home}</home>
-						<zipUrlInstaller>
-							<url>${runtime.appsvr.container.zipUrlInstaller.url}
-							</url>
-						</zipUrlInstaller>
+<!-- 						<zipUrlInstaller> -->
+<!-- 							<url>${runtime.appsvr.container.zipUrlInstaller.url} -->
+<!-- 							</url> -->
+<!-- 						</zipUrlInstaller> -->
 					</container>
 					<configuration>
 						<type>${runtime.appsvr.configuration.type}</type>
