@@ -152,6 +152,12 @@
 						</properties>
 					</configuration>
 					<deployer />
+					<daemon>
+						<properties>
+							<cargo.daemon.url>http://localhost:18000</cargo.daemon.url>
+							<cargo.daemon.handleid>default</cargo.daemon.handleid>
+						</properties>
+					</daemon>
 				</configuration>
 			</plugin>
 		</plugins>
