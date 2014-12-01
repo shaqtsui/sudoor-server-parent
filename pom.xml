@@ -42,6 +42,7 @@
 		<runtime.appsvr.configuration.jvmargs.common>
 			-Xms512m
 			-Xmx4g
+			-XX:MaxPermSize=512m
 			-Dfile.encoding=UTF-8
 		</runtime.appsvr.configuration.jvmargs.common>
 		<runtime.appsvr.configuration.jvmargs.debug>
