@@ -32,6 +32,7 @@
 	<properties>
 		<org.testng.version>6.8.8</org.testng.version>
 		<org.apache.tomcat.version>7.0.54</org.apache.tomcat.version>
+		<org.wildfly.version>8.2.0.Final</org.wildfly.version>
 		
 		<!-- customize artifact -->
 		<artifact.hotdeploy.jrebel.home>/dev/jrebel</artifact.hotdeploy.jrebel.home>
@@ -389,14 +390,9 @@
 			<id>runtime.appsvr.wildfly</id>
 			<properties>
 				<runtime.appsvr.container.containerId>wildfly8x</runtime.appsvr.container.containerId>
-				<runtime.appsvr.container.home>/dev/wildfly-8.1.0.Final</runtime.appsvr.container.home>
-				<!-- -->
-				<runtime.appsvr.container.zipUrlInstaller.url>http://download.jboss.org/wildfly/8.1.0.Final/wildfly-8.1.0.Final.zip</runtime.appsvr.container.zipUrlInstaller.url>
-				 
-				 <!-- cargo only support wildfly 8.0.0 
-				<runtime.appsvr.container.zipUrlInstaller.url>http://download.jboss.org/wildfly/8.0.0.Final/wildfly-8.0.0.Final.zip</runtime.appsvr.container.zipUrlInstaller.url>
-				-->
-				<runtime.appsvr.configuration.home>/dev/wildfly-8.1.0.Final/standalone</runtime.appsvr.configuration.home>
+				<runtime.appsvr.container.home>/dev/wildfly-${org.wildfly.version}</runtime.appsvr.container.home>
+				<runtime.appsvr.container.zipUrlInstaller.url>http://download.jboss.org/wildfly/${org.wildfly.version}/wildfly-${org.wildfly.version}.zip</runtime.appsvr.container.zipUrlInstaller.url>
+				<runtime.appsvr.configuration.home>/dev/wildfly-${org.wildfly.version}/standalone</runtime.appsvr.configuration.home>
 			</properties>
 		</profile>
 
