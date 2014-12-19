@@ -10,7 +10,7 @@
 				Env Info & Management(Server)
 					This normally used to manage existing Env via cargo which can be used in whole SDLC flow.
 					Spring boot also manage Env, but it only provide basic manage which can only be used in development.
-				Profiles as utility
+					Profiles as env to run different goals
 				Global SDLC Build Cfg
 					customize artifact
 
@@ -66,6 +66,8 @@
 		<runtime.appsvr.configuration.contextPath>${project.artifactId}</runtime.appsvr.configuration.contextPath>
 		<runtime.appsvr.configuration.manager.username>username</runtime.appsvr.configuration.manager.username>
 		<runtime.appsvr.configuration.manager.password>password</runtime.appsvr.configuration.manager.password>
+		<runtime.appsvr.configuration.domain.server-group>main-server-group</runtime.appsvr.configuration.domain.server-group>
+		
 
 		<runtime.key.alias>gplatformkey</runtime.key.alias>
 		<runtime.key.algorithm>RSA</runtime.key.algorithm>
@@ -119,6 +121,7 @@
 				<artifactId>sonar-maven-plugin</artifactId>
 				<version>2.2</version>
 			</plugin>
+			<!-- cargo don't support wildfly domain mode management -->
 			<plugin>
 				<groupId>org.codehaus.cargo</groupId>
 				<artifactId>cargo-maven2-plugin</artifactId>
@@ -162,6 +165,20 @@
 					</daemon>
 				</configuration>
 			</plugin>
+		
+			<plugin>
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-maven-plugin</artifactId>
+                <configuration>
+                	<jbossHome>${runtime.appsvr.container.home}</jbossHome>
+                	<force>true</force>
+                    <domain>
+                        <server-groups>
+                            <server-group>${runtime.appsvr.configuration.domain.server-group}</server-group>
+                        </server-groups>
+                    </domain>
+                </configuration>
+            </plugin>
 		</plugins>
 	</build>
 	<reporting>
