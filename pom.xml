@@ -341,7 +341,6 @@
 					<plugin>
 						<groupId>com.lazerycode.jmeter</groupId>
 						<artifactId>jmeter-maven-plugin</artifactId>
-						<version>1.9.0</version>
 						<executions>
 							<execution>
 								<id>jmeter-tests</id>
