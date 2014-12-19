@@ -173,6 +173,7 @@
                 <configuration>
                 	<jbossHome>${runtime.appsvr.container.home}</jbossHome>
                 	<port>${runtime.appsvr.configuration.manager.port}</port>
+                	<name>${project.artifactId}.${project.packaging}</name>
                 	<force>true</force>
                     <domain>
                         <server-groups>
