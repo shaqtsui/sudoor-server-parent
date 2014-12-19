@@ -406,12 +406,15 @@
 		</profile>
 		
 		<!-- new runtime profiles only provider env info, NO action will be taken here. Pls use mvn cargo:xxx to perform action-->
+		<!-- runtime.appsvr.wildfly & runtime.appsvr.tomcat provide local app server info &  zipUrlInstaller.url-->
 		<profile>
 			<id>runtime.appsvr.wildfly</id>
 			<properties>
+				<runtime.appsvr.container.type>installed</runtime.appsvr.container.type>
 				<runtime.appsvr.container.containerId>wildfly8x</runtime.appsvr.container.containerId>
 				<runtime.appsvr.container.home>/dev/wildfly-${org.wildfly.version}</runtime.appsvr.container.home>
 				<runtime.appsvr.container.zipUrlInstaller.url>http://download.jboss.org/wildfly/${org.wildfly.version}/wildfly-${org.wildfly.version}.zip</runtime.appsvr.container.zipUrlInstaller.url>
+				<runtime.appsvr.configuration.type>existing</runtime.appsvr.configuration.type>
 				<runtime.appsvr.configuration.home>/dev/wildfly-${org.wildfly.version}/standalone</runtime.appsvr.configuration.home>
 			</properties>
 		</profile>
@@ -419,9 +422,11 @@
 		<profile>
 			<id>runtime.appsvr.tomcat</id>
 			<properties>
+				<runtime.appsvr.container.type>installed</runtime.appsvr.container.type>
 				<runtime.appsvr.container.containerId>tomcat7x</runtime.appsvr.container.containerId>
 				<runtime.appsvr.container.home>/dev/apache-tomcat-${org.apache.tomcat.version}</runtime.appsvr.container.home>
 				<runtime.appsvr.container.zipUrlInstaller.url>http://archive.apache.org/dist/tomcat/tomcat-7/v${org.apache.tomcat.version}/bin/apache-tomcat-${org.apache.tomcat.version}.zip</runtime.appsvr.container.zipUrlInstaller.url>
+				<runtime.appsvr.configuration.type>existing</runtime.appsvr.configuration.type>
 				<runtime.appsvr.configuration.home>/dev/apache-tomcat-${org.apache.tomcat.version}</runtime.appsvr.configuration.home>
 
 				<runtime.appsvr.configuration.servlet.users>tomcat:tomcat:manager-gui,admin-gui</runtime.appsvr.configuration.servlet.users>
@@ -431,18 +436,9 @@
 		<profile>
 			<id>runtime.appsvr.new</id>
 			<properties>
-				<runtime.appsvr.container.type>installed</runtime.appsvr.container.type>
 				<runtime.appsvr.container.home />
 				<runtime.appsvr.configuration.type>standalone</runtime.appsvr.configuration.type>
 				<runtime.appsvr.configuration.home />
-			</properties>
-		</profile>
-
-		<profile>
-			<id>runtime.appsvr.local</id>
-			<properties>
-				<runtime.appsvr.container.type>installed</runtime.appsvr.container.type>
-				<runtime.appsvr.configuration.type>existing</runtime.appsvr.configuration.type>
 			</properties>
 		</profile>
 
