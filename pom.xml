@@ -21,7 +21,7 @@
 	<parent>
 		<groupId>net.gplatform</groupId>
 		<artifactId>gplatform-parent</artifactId>
-		<version>1.0.5-SNAPSHOT</version>
+		<version>1.0.7</version>
 		<relativePath />
 	</parent>
 
@@ -30,7 +30,7 @@
 	<packaging>pom</packaging>
 
 	<properties>
-		<org.apache.tomcat.version>7.0.54</org.apache.tomcat.version>
+		<org.apache.tomcat.version>7.0.57</org.apache.tomcat.version>
 		<org.wildfly.version>8.2.0.Final</org.wildfly.version>
 		
 		<!-- customize artifact -->
