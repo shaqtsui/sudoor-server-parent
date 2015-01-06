@@ -5,7 +5,7 @@
 		NOTE :
 			Refer to sudoor-design/System Management Sketch for detailed Info.
 			
-			Parent POM ONLY maintain :
+			Parent POM ONLY maintain web project:
 				Project Info
 				Env Info & Management(Server)
 					This normally used to manage existing Env via cargo which can be used in whole SDLC flow.
@@ -109,11 +109,6 @@
 					<attachClasses>true</attachClasses>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>sonar-maven-plugin</artifactId>
-				<version>2.2</version>
-			</plugin>
 			<!-- cargo don't support wildfly domain mode management -->
 			<plugin>
 				<groupId>org.codehaus.cargo</groupId>
@@ -176,78 +171,7 @@
 			</plugin>
 		</plugins>
 	</build>
-	<reporting>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-project-info-reports-plugin</artifactId>
-				<version>2.6</version>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-report-plugin</artifactId>
-				<reportSets>
-					<reportSet>
-						<id>integration-tests</id>
-						<reports>
-							<report>failsafe-report-only</report>
-						</reports>
-					</reportSet>
-				</reportSets>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-changelog-plugin</artifactId>
-				<version>2.2</version>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-changes-plugin</artifactId>
-				<version>2.10</version>
-				<reportSets>
-					<reportSet>
-						<reports>
-							<report>changes-report</report>
-						</reports>
-					</reportSet>
-				</reportSets>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-checkstyle-plugin</artifactId>
-				<version>2.12.1</version>
-				<reportSets>
-					<reportSet>
-						<reports>
-							<report>checkstyle</report>
-						</reports>
-					</reportSet>
-				</reportSets>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jxr-plugin</artifactId>
-				<version>2.4</version>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-pmd-plugin</artifactId>
-				<version>3.1</version>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.9.1</version>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>jdepend-maven-plugin</artifactId>
-				<version>2.0</version>
-			</plugin>
-		</plugins>
-	</reporting>
-
-
+	
 	<!-- More Project Information -->
 	<name>sudoor-server-parent</name>
 
@@ -262,46 +186,6 @@
 		<url>https://github.com/xfcjscn/sudoor-server-parent</url>
 		<tag>HEAD</tag>
 	</scm>
-
-	<repositories>
-		<!-- 
-		<repository>
-			<id>maven-net-cn</id>
-			<name>Maven China Mirror</name>
-			<url>http://maven.net.cn/content/groups/public/</url>
-		</repository>
-		 -->
-		<repository>
-			<id>repository.springframework.maven.release</id>
-			<name>Spring Framework Maven Release Repository</name>
-			<url>http://maven.springframework.org/release</url>
-		</repository>
-		<repository>
-			<id>repository.springframework.maven.milestone</id>
-			<name>Spring Framework Maven milestone Repository</name>
-			<url>http://maven.springframework.org/milestone</url>
-		</repository>
-		<repository>
-			<id>repository.springframework.maven.snapshot</id>
-			<name>Spring Framework Maven snapshot Repository</name>
-			<url>http://maven.springframework.org/snapshot</url>
-		</repository>
-	</repositories>
-
-	<pluginRepositories>
-		<pluginRepository>
-			<id>codehaus</id>
-			<name>codehaus Repsitory</name>
-			<url>https://nexus.codehaus.org/content/groups/snapshots-group</url>
-			<layout>default</layout>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</pluginRepository>
-	</pluginRepositories>
 
 	<profiles>
 		<profile>
