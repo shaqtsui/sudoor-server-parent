@@ -6,15 +6,30 @@
 			Refer to sudoor-design/System Management Sketch for detailed Info.
 			
 			Parent POM ONLY maintain web project:
-				Project Info
-				Env Info & Management(Server)
-					This normally used to manage existing Env via cargo which can be used in whole SDLC flow.
-					Spring boot also manage Env, but it only provide basic manage which can only be used in development.
-					Profiles as env to run different goals
-				Global SDLC Build Cfg
-					customize artifact
+				Project Info:
 
-			Regarding to Build Info need to be maintained in child POM.
+				Env Info:
+					App Server Info
+					key info
+					hotdeploy info
+					profiles:
+						runtime.appsvr.*
+					
+				Tool:
+					cargo
+					wildfly
+					
+				SDLC Config:
+					customize artifact
+						war plugin
+						profiles:
+							artifact.hotdeploy
+					profiles:
+						test.performance
+						test.integration
+						openshift
+						runtime.appsvr.https
+
 	-->
 
 	<!-- The Basics -->
