@@ -82,23 +82,6 @@
 
 	</properties>
 
-	<dependencies>
-		<!-- this is the server -->
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-catalina</artifactId>
-			<version>${org.apache.tomcat.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-coyote</artifactId>
-			<version>${org.apache.tomcat.version}</version>
-			<scope>provided</scope>
-		</dependency>
-	</dependencies>
-
-
 	<!-- Build Settings -->
 	<build>
 		<plugins>
