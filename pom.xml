@@ -111,6 +111,7 @@
 			<plugin>
 				<groupId>org.codehaus.cargo</groupId>
 				<artifactId>cargo-maven2-plugin</artifactId>
+				<version>1.4.11</version>
 				<configuration>
 					<container>
 						<type>${runtime.appsvr.container.type}</type>
@@ -155,6 +156,7 @@
 			<plugin>
 				<groupId>org.wildfly.plugins</groupId>
 				<artifactId>wildfly-maven-plugin</artifactId>
+				<version>1.0.2.Final</version>
 				<configuration>
 					<jbossHome>${runtime.appsvr.container.home}</jbossHome>
 					<port>${runtime.appsvr.configuration.manager.port}</port>
