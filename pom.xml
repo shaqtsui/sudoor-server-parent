@@ -80,7 +80,7 @@
 		<runtime.appsvr.configuration.contextPath>${project.artifactId}</runtime.appsvr.configuration.contextPath>
 		<runtime.appsvr.configuration.manager.username>username</runtime.appsvr.configuration.manager.username>
 		<runtime.appsvr.configuration.manager.password>password</runtime.appsvr.configuration.manager.password>
-		<runtime.appsvr.configuration.manager.port>19990</runtime.appsvr.configuration.manager.port>
+		<runtime.appsvr.configuration.manager.port>9990</runtime.appsvr.configuration.manager.port>
 		<runtime.appsvr.configuration.domain.server-group>main-server-group</runtime.appsvr.configuration.domain.server-group>
 
 
