@@ -49,7 +49,7 @@
 		<org.wildfly.version>8.2.0.Final</org.wildfly.version>
 		
 		<!-- customize artifact -->
-		<artifact.hotdeploy.jrebel.home>/dev/jrebel</artifact.hotdeploy.jrebel.home>
+		<artifact.hotdeploy.jrebel.home>/usr/jrebel</artifact.hotdeploy.jrebel.home>
 		
 		<!-- properties -->
 		<runtime.appsvr.configuration.hostname>localhost</runtime.appsvr.configuration.hostname>
@@ -287,10 +287,10 @@
 			<properties>
 				<runtime.appsvr.container.type>installed</runtime.appsvr.container.type>
 				<runtime.appsvr.container.containerId>wildfly8x</runtime.appsvr.container.containerId>
-				<runtime.appsvr.container.home>/dev/wildfly-${org.wildfly.version}</runtime.appsvr.container.home>
+				<runtime.appsvr.container.home>/usr/wildfly-${org.wildfly.version}</runtime.appsvr.container.home>
 				<runtime.appsvr.container.zipUrlInstaller.url>http://download.jboss.org/wildfly/${org.wildfly.version}/wildfly-${org.wildfly.version}.zip</runtime.appsvr.container.zipUrlInstaller.url>
 				<runtime.appsvr.configuration.type>existing</runtime.appsvr.configuration.type>
-				<runtime.appsvr.configuration.home>/dev/wildfly-${org.wildfly.version}/standalone</runtime.appsvr.configuration.home>
+				<runtime.appsvr.configuration.home>/usr/wildfly-${org.wildfly.version}/standalone</runtime.appsvr.configuration.home>
 			</properties>
 		</profile>
 
@@ -299,10 +299,10 @@
 			<properties>
 				<runtime.appsvr.container.type>installed</runtime.appsvr.container.type>
 				<runtime.appsvr.container.containerId>tomcat7x</runtime.appsvr.container.containerId>
-				<runtime.appsvr.container.home>/dev/apache-tomcat-${org.apache.tomcat.version}</runtime.appsvr.container.home>
+				<runtime.appsvr.container.home>/usr/apache-tomcat-${org.apache.tomcat.version}</runtime.appsvr.container.home>
 				<runtime.appsvr.container.zipUrlInstaller.url>http://archive.apache.org/dist/tomcat/tomcat-7/v${org.apache.tomcat.version}/bin/apache-tomcat-${org.apache.tomcat.version}.zip</runtime.appsvr.container.zipUrlInstaller.url>
 				<runtime.appsvr.configuration.type>existing</runtime.appsvr.configuration.type>
-				<runtime.appsvr.configuration.home>/dev/apache-tomcat-${org.apache.tomcat.version}</runtime.appsvr.configuration.home>
+				<runtime.appsvr.configuration.home>/usr/apache-tomcat-${org.apache.tomcat.version}</runtime.appsvr.configuration.home>
 
 				<runtime.appsvr.configuration.servlet.users>tomcat:tomcat:manager-gui,admin-gui</runtime.appsvr.configuration.servlet.users>
 			</properties>
