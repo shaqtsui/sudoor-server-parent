@@ -100,13 +100,6 @@
 	<!-- Build Settings -->
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<configuration>
-					<attachClasses>true</attachClasses>
-				</configuration>
-			</plugin>
 			<!-- cargo don't support wildfly domain mode management -->
 			<plugin>
 				<groupId>org.codehaus.cargo</groupId>
