@@ -16,7 +16,6 @@
 						runtime.appsvr.*
 					
 				Tool:
-					cargo
 					wildfly
 					
 				SDLC Config:
@@ -45,126 +44,22 @@
 	<packaging>pom</packaging>
 
 	<properties>
-		<org.apache.tomcat.version>7.0.57</org.apache.tomcat.version>
 		<org.wildfly.version>8.2.0.Final</org.wildfly.version>
 		
 		<!-- customize artifact -->
 		<artifact.hotdeploy.jrebel.home>/usr/jrebel</artifact.hotdeploy.jrebel.home>
 		
 		<!-- properties -->
-		<runtime.appsvr.configuration.hostname>localhost</runtime.appsvr.configuration.hostname>
-		<runtime.appsvr.configuration.protocol>http</runtime.appsvr.configuration.protocol>
-		<runtime.appsvr.configuration.jvmargs.common>
-			-Xms512m
-			-Xmx4g
-			-XX:MaxPermSize=512m
-			-Dfile.encoding=UTF-8
-		</runtime.appsvr.configuration.jvmargs.common>
-		<runtime.appsvr.configuration.jvmargs.debug>
-			-Xdebug
-			-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=4001
-			-Xnoagent
-			-Djava.compiler=NONE
-		</runtime.appsvr.configuration.jvmargs.debug>
-		<runtime.appsvr.configuration.jvmargs.hotdeploy>
-			-javaagent:${artifact.hotdeploy.jrebel.home}/jrebel.jar
-			-Drebel.jersey_plugin=true
-			-Drebel.spring_data_plugin=true
-		</runtime.appsvr.configuration.jvmargs.hotdeploy>
-		<runtime.appsvr.configuration.jvmargs>
-			${runtime.appsvr.configuration.jvmargs.common}
-		</runtime.appsvr.configuration.jvmargs>
+		<runtime.appsvr.container.home>/usr/wildfly-${org.wildfly.version}</runtime.appsvr.container.home>
 
-		<runtime.appsvr.configuration.servlet.port>8080</runtime.appsvr.configuration.servlet.port>
-		<runtime.appsvr.configuration.port.offset>0</runtime.appsvr.configuration.port.offset>
-		<runtime.appsvr.configuration.contextPath>${project.artifactId}</runtime.appsvr.configuration.contextPath>
-		<runtime.appsvr.configuration.manager.username>username</runtime.appsvr.configuration.manager.username>
-		<runtime.appsvr.configuration.manager.password>password</runtime.appsvr.configuration.manager.password>
-		<runtime.appsvr.configuration.manager.port>9990</runtime.appsvr.configuration.manager.port>
+		<runtime.appsvr.configuration.management.hostname>localhost</runtime.appsvr.configuration.management.hostname>
+		<runtime.appsvr.configuration.management.port>9990</runtime.appsvr.configuration.management.port>
+		<runtime.appsvr.configuration.management.username>username</runtime.appsvr.configuration.management.username>
+		<runtime.appsvr.configuration.management.password>password</runtime.appsvr.configuration.management.password>
 		<runtime.appsvr.configuration.domain.server-group>main-server-group</runtime.appsvr.configuration.domain.server-group>
-
-
-		<runtime.key.alias>gplatformkey</runtime.key.alias>
-		<runtime.key.algorithm>RSA</runtime.key.algorithm>
-		<!-- tomcat can not support different key and store password -->
-		<runtime.key.password>Shark1011</runtime.key.password>
-		<runtime.key.size>1024</runtime.key.size>
-		<runtime.key.validity>100</runtime.key.validity>
-		<runtime.key.dname>cn=www.gplatform.net, ou=None, L=Seattle, ST=Shanghai, o=gplatform, c=CN</runtime.key.dname>
-		<runtime.key.store>${project.build.directory}/keys/gplatformkeystore</runtime.key.store>
-		<runtime.key.store.type>JKS</runtime.key.store.type>
-		<runtime.key.store.password>Shark1011</runtime.key.store.password>
 
 	</properties>
 
-	<!-- Build Settings -->
-	<build>
-		<plugins>
-			<!-- cargo don't support wildfly domain mode management -->
-			<plugin>
-				<groupId>org.codehaus.cargo</groupId>
-				<artifactId>cargo-maven2-plugin</artifactId>
-				<version>1.4.11</version>
-				<configuration>
-					<container>
-						<type>${runtime.appsvr.container.type}</type>
-						<containerId>${runtime.appsvr.container.containerId}</containerId>
-						<timeout>1800000</timeout>
-						<home>${runtime.appsvr.container.home}</home>
-<!-- 						<zipUrlInstaller> -->
-<!-- 							<url>${runtime.appsvr.container.zipUrlInstaller.url} -->
-<!-- 							</url> -->
-<!-- 						</zipUrlInstaller> -->
-					</container>
-					<configuration>
-						<type>${runtime.appsvr.configuration.type}</type>
-						<home>${runtime.appsvr.configuration.home}</home>
-						<properties>
-							<cargo.port.offset>${runtime.appsvr.configuration.port.offset}</cargo.port.offset>
-							<cargo.jvmargs>${runtime.appsvr.configuration.jvmargs}</cargo.jvmargs>
-							<cargo.hostname>${runtime.appsvr.configuration.hostname}</cargo.hostname>
-							<cargo.protocol>${runtime.appsvr.configuration.protocol}</cargo.protocol>
-							<cargo.servlet.port>${runtime.appsvr.configuration.servlet.port}</cargo.servlet.port>
-							<cargo.servlet.users>${runtime.appsvr.configuration.servlet.users}</cargo.servlet.users>
-							<cargo.remote.username>${runtime.appsvr.configuration.manager.username}</cargo.remote.username>
-							<cargo.remote.password>${runtime.appsvr.configuration.manager.password}</cargo.remote.password>
-							<cargo.tomcat.connector.clientAuth>false</cargo.tomcat.connector.clientAuth>
-							<cargo.tomcat.connector.sslProtocol>TLS</cargo.tomcat.connector.sslProtocol>
-							<cargo.tomcat.connector.keystoreFile>${runtime.key.store}</cargo.tomcat.connector.keystoreFile>
-							<cargo.tomcat.connector.keystorePass>${runtime.key.store.password}</cargo.tomcat.connector.keystorePass>
-							<cargo.tomcat.connector.keyAlias>${runtime.key.alias}</cargo.tomcat.connector.keyAlias>
-							<cargo.tomcat.httpSecure>true</cargo.tomcat.httpSecure>
-						</properties>
-					</configuration>
-					<deployer />
-					<daemon>
-						<properties>
-							<cargo.daemon.url>http://localhost:18000</cargo.daemon.url>
-							<cargo.daemon.handleid>default</cargo.daemon.handleid>
-						</properties>
-					</daemon>
-				</configuration>
-			</plugin>
-
-			<plugin>
-				<groupId>org.wildfly.plugins</groupId>
-				<artifactId>wildfly-maven-plugin</artifactId>
-				<version>1.0.2.Final</version>
-				<configuration>
-					<jbossHome>${runtime.appsvr.container.home}</jbossHome>
-					<port>${runtime.appsvr.configuration.manager.port}</port>
-					<name>${project.artifactId}.${project.packaging}</name>
-					<force>true</force>
-					<domain>
-						<server-groups>
-							<server-group>${runtime.appsvr.configuration.domain.server-group}</server-group>
-						</server-groups>
-					</domain>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
-	
 	<!-- More Project Information -->
 	<name>sudoor-server-parent</name>
 
@@ -273,100 +168,56 @@
 			</build>
 		</profile>
 		
-		<!-- new runtime profiles only provider env info, NO action will be taken here. Pls use mvn cargo:xxx to perform action-->
-		<!-- runtime.appsvr.wildfly & runtime.appsvr.tomcat provide local app server info &  zipUrlInstaller.url-->
+		<!-- new runtime profiles only provider env info, NO action will be taken here. Pls use mvn wildfly:xxx to perform action-->
 		<profile>
 			<id>runtime.appsvr.wildfly</id>
-			<properties>
-				<runtime.appsvr.container.type>installed</runtime.appsvr.container.type>
-				<runtime.appsvr.container.containerId>wildfly8x</runtime.appsvr.container.containerId>
-				<runtime.appsvr.container.home>/usr/wildfly-${org.wildfly.version}</runtime.appsvr.container.home>
-				<runtime.appsvr.container.zipUrlInstaller.url>http://download.jboss.org/wildfly/${org.wildfly.version}/wildfly-${org.wildfly.version}.zip</runtime.appsvr.container.zipUrlInstaller.url>
-				<runtime.appsvr.configuration.type>existing</runtime.appsvr.configuration.type>
-				<runtime.appsvr.configuration.home>/usr/wildfly-${org.wildfly.version}/standalone</runtime.appsvr.configuration.home>
-			</properties>
-		</profile>
-
-		<profile>
-			<id>runtime.appsvr.tomcat</id>
-			<properties>
-				<runtime.appsvr.container.type>installed</runtime.appsvr.container.type>
-				<runtime.appsvr.container.containerId>tomcat7x</runtime.appsvr.container.containerId>
-				<runtime.appsvr.container.home>/usr/apache-tomcat-${org.apache.tomcat.version}</runtime.appsvr.container.home>
-				<runtime.appsvr.container.zipUrlInstaller.url>http://archive.apache.org/dist/tomcat/tomcat-7/v${org.apache.tomcat.version}/bin/apache-tomcat-${org.apache.tomcat.version}.zip</runtime.appsvr.container.zipUrlInstaller.url>
-				<runtime.appsvr.configuration.type>existing</runtime.appsvr.configuration.type>
-				<runtime.appsvr.configuration.home>/usr/apache-tomcat-${org.apache.tomcat.version}</runtime.appsvr.configuration.home>
-
-				<runtime.appsvr.configuration.servlet.users>tomcat:tomcat:manager-gui,admin-gui</runtime.appsvr.configuration.servlet.users>
-			</properties>
-		</profile>
-
-		<profile>
-			<id>runtime.appsvr.new</id>
-			<properties>
-				<runtime.appsvr.container.home />
-				<runtime.appsvr.configuration.type>standalone</runtime.appsvr.configuration.type>
-				<runtime.appsvr.configuration.home />
-			</properties>
-		</profile>
-
-		<profile>
-			<id>runtime.appsvr.remote</id>
-			<properties>
-				<runtime.appsvr.container.type>remote</runtime.appsvr.container.type>
-				<runtime.appsvr.configuration.type>runtime</runtime.appsvr.configuration.type>
-				<runtime.appsvr.configuration.home />
-			</properties>
-		</profile>
-
-		<profile>
-			<id>runtime.appsvr.https</id>
-			<properties>
-				<runtime.appsvr.configuration.servlet.port>8443</runtime.appsvr.configuration.servlet.port>
-				<runtime.appsvr.configuration.protocol>https</runtime.appsvr.configuration.protocol>
-			</properties>
 			<build>
 				<plugins>
 					<plugin>
-						<groupId>org.codehaus.mojo</groupId>
-						<artifactId>keytool-maven-plugin</artifactId>
-						<version>1.3</version>
+						<groupId>org.wildfly.plugins</groupId>
+						<artifactId>wildfly-maven-plugin</artifactId>
+						<version>1.0.2.Final</version>
 						<configuration>
-							<verbose>true</verbose>
-							<skipIfExist>true</skipIfExist>
-							<keystore>${runtime.key.store}</keystore>
-							<storetype>${runtime.key.store.type}</storetype>
-							<storepass>${runtime.key.store.password}</storepass>
-							<alias>${runtime.key.alias}</alias>
-							<keypass>${runtime.key.password}</keypass>
-							<dname>${runtime.key.dname}</dname>
-							<validity>${runtime.key.validity}</validity>
-							<keyalg>${runtime.key.algorithm}</keyalg>
-							<keysize>${runtime.key.size}</keysize>
+							<jbossHome>${runtime.appsvr.container.home}</jbossHome>
+							<hostname>${runtime.appsvr.configuration.management.hostname}</hostname>
+							<port>${runtime.appsvr.configuration.management.port}</port>
+							<username>${runtime.appsvr.configuration.management.username}</username>
+							<password>${runtime.appsvr.configuration.management.password}</password>
+							<name>${project.artifactId}.${project.packaging}</name>
+							<force>true</force>
 						</configuration>
-						<executions>
-							<execution>
-								<goals>
-									<goal>generateKeyPair</goal>
-								</goals>
-								<phase>generate-resources</phase>
-							</execution>
-						</executions>
 					</plugin>
 				</plugins>
 			</build>
 		</profile>
-
+		
 		<profile>
-			<id>runtime.appsvr.debug</id>
-			<properties>
-				<runtime.appsvr.configuration.jvmargs>
-					${runtime.appsvr.configuration.jvmargs.common}
-					${runtime.appsvr.configuration.jvmargs.debug}
-				</runtime.appsvr.configuration.jvmargs>
-			</properties>
+			<id>runtime.appsvr.wildfly.domain</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.wildfly.plugins</groupId>
+						<artifactId>wildfly-maven-plugin</artifactId>
+						<version>1.0.2.Final</version>
+						<configuration>
+							<jbossHome>${runtime.appsvr.container.home}</jbossHome>
+							<hostname>${runtime.appsvr.configuration.management.hostname}</hostname>
+							<port>${runtime.appsvr.configuration.management.port}</port>
+							<username>${runtime.appsvr.configuration.management.username}</username>
+							<password>${runtime.appsvr.configuration.management.password}</password>
+							<name>${project.artifactId}.${project.packaging}</name>
+							<force>true</force>
+							<domain>
+								<server-groups>
+									<server-group>${runtime.appsvr.configuration.domain.server-group}</server-group>
+								</server-groups>
+							</domain>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
 		</profile>
-
+		
 	</profiles>
 
 </project>
