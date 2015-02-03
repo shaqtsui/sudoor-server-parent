@@ -6,28 +6,15 @@
 			Refer to sudoor-design/System Management Sketch for detailed Info.
 			
 			Parent POM ONLY maintain web project:
-				Project Info:
+				Project Info
 
-				Env Info:
-					App Server Info
-					key info
-					hotdeploy info
-					profiles:
-						runtime.appsvr.*
-					
 				Tool:
-					wildfly
+					runtime.appsvr.wildfly.*
 					
 				SDLC Config:
-					customize artifact
-						war plugin
-						profiles:
-							artifact.hotdeploy
-					profiles:
-						test.performance
-						test.integration
-						openshift
-						runtime.appsvr.https
+					test.performance
+					test.integration
+					openshift
 
 	-->
 
@@ -46,10 +33,6 @@
 	<properties>
 		<org.wildfly.version>8.2.0.Final</org.wildfly.version>
 		
-		<!-- customize artifact -->
-		<artifact.hotdeploy.jrebel.home>/usr/jrebel</artifact.hotdeploy.jrebel.home>
-		
-		<!-- properties -->
 		<runtime.appsvr.container.home>/usr/wildfly-${org.wildfly.version}</runtime.appsvr.container.home>
 
 		<runtime.appsvr.configuration.management.hostname>localhost</runtime.appsvr.configuration.management.hostname>
@@ -76,34 +59,6 @@
 	</scm>
 
 	<profiles>
-		<profile>
-			<id>artifact.hotdeploy</id>
-			<properties>
-				<runtime.appsvr.configuration.jvmargs>
-					${runtime.appsvr.configuration.jvmargs.common}
-					${runtime.appsvr.configuration.jvmargs.debug}
-					${runtime.appsvr.configuration.jvmargs.hotdeploy}
-				</runtime.appsvr.configuration.jvmargs>
-			</properties>
-			<build>
-				<plugins>
-					<!-- support change without restart for dev stage -->
-					<plugin>
-						<groupId>org.zeroturnaround</groupId>
-						<artifactId>jrebel-maven-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>generate-rebel-xml</id>
-								<phase>process-resources</phase>
-								<goals>
-									<goal>generate</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
 
 		<profile>
 			<id>test.performance</id>
