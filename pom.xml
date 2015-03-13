@@ -32,11 +32,28 @@
 
 	<properties>
 		<org.wildfly.version>8.2.0.Final</org.wildfly.version>
-		
+
 		<runtime.appsvr.container.home>/usr/wildfly-${org.wildfly.version}</runtime.appsvr.container.home>
 		<runtime.appsvr.configuration.domain.server-group>main-server-group</runtime.appsvr.configuration.domain.server-group>
 
 	</properties>
+	
+	
+	<!-- Build Settings -->
+	<build>
+		<plugins>
+			<!-- support both cli & phase binding execution  -->
+			<plugin>
+				<groupId>org.wildfly.plugins</groupId>
+				<artifactId>wildfly-maven-plugin</artifactId>
+				<version>1.0.2.Final</version>
+				<configuration>
+					<jbossHome>${runtime.appsvr.container.home}</jbossHome>
+					<name>${project.artifactId}.${project.packaging}</name>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
 	<!-- More Project Information -->
 	<name>sudoor-server-parent</name>
@@ -97,12 +114,9 @@
 		</profile>
 
 		<profile>
-			<!-- When built in OpenShift the 'openshift' profile will be used when
-				invoking mvn. -->
-			<!-- Use this profile for any OpenShift specific customization your app
-				will need. -->
-			<!-- By default that is to put the resulting archive into the 'webapps'
-				folder. -->
+			<!-- When built in OpenShift the 'openshift' profile will be used when invoking mvn. -->
+			<!-- Use this profile for any OpenShift specific customization your app will need. -->
+			<!-- By default that is to put the resulting archive into the 'webapps' folder. -->
 			<!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
 			<id>openshift</id>
 			<build>
@@ -118,24 +132,7 @@
 			</build>
 		</profile>
 		
-		<!-- new runtime profiles only provider env info, NO action will be taken here. Pls use mvn wildfly:xxx to perform action-->
-		<profile>
-			<id>runtime.appsvr.wildfly</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.wildfly.plugins</groupId>
-						<artifactId>wildfly-maven-plugin</artifactId>
-						<version>1.0.2.Final</version>
-						<configuration>
-							<jbossHome>${runtime.appsvr.container.home}</jbossHome>
-							<name>${project.artifactId}.${project.packaging}</name>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-		
+		<!-- the execution will merge to main build -->
 		<profile>
 			<id>runtime.appsvr.wildfly.domain</id>
 			<build>
@@ -145,8 +142,6 @@
 						<artifactId>wildfly-maven-plugin</artifactId>
 						<version>1.0.2.Final</version>
 						<configuration>
-							<jbossHome>${runtime.appsvr.container.home}</jbossHome>
-							<name>${project.artifactId}.${project.packaging}</name>
 							<domain>
 								<server-groups>
 									<server-group>${runtime.appsvr.configuration.domain.server-group}</server-group>
@@ -157,7 +152,7 @@
 				</plugins>
 			</build>
 		</profile>
-		
+
 	</profiles>
 
 </project>
