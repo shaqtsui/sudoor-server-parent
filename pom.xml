@@ -110,12 +110,14 @@
 						<version>1.0.2.Final</version>
 						<executions>
 							<execution>
+								<id>pre-integration-test-deploy-only</id>
 								<phase>pre-integration-test</phase>
 								<goals>
 									<goal>deploy-only</goal>
 								</goals>
 							</execution>
 							<execution>
+								<id>post-integration-test-undeploy</id>
 								<phase>post-integration-test</phase>
 								<goals>
 									<goal>undeploy</goal>
