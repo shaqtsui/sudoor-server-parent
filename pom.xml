@@ -32,6 +32,7 @@
 
 	<properties>
 		<org.wildfly.version>8.2.0.Final</org.wildfly.version>
+		<org.seleniumhq.selenium.version>2.45.0</org.seleniumhq.selenium.version>
 
 		<runtime.appsvr.container.home>/usr/wildfly-${org.wildfly.version}</runtime.appsvr.container.home>
 		<runtime.appsvr.configuration.management.hostname>localhost</runtime.appsvr.configuration.management.hostname>
@@ -39,10 +40,25 @@
 		<runtime.appsvr.configuration.management.username>username</runtime.appsvr.configuration.management.username>
 		<runtime.appsvr.configuration.management.password>password</runtime.appsvr.configuration.management.password>
 		<runtime.appsvr.configuration.domain.server-group>main-server-group</runtime.appsvr.configuration.domain.server-group>
-		
+
 		<wildfly.deployment.name>${project.artifactId}.${project.packaging}</wildfly.deployment.name>
 	</properties>
-	
+
+	<dependencies>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>${org.seleniumhq.selenium.version}</version>
+			<scope>test</scope>
+			<exclusions>
+				<!-- exclude this as the dependent xml-apis conflict with the one used by hibernate -->
+				<exclusion>
+					<groupId>org.seleniumhq.selenium</groupId>
+					<artifactId>selenium-htmlunit-driver</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+	</dependencies>
 	
 	<!-- Build Settings -->
 	<build>
