@@ -38,7 +38,7 @@
 	<properties>
 		<org.wildfly.version>8.2.0.Final</org.wildfly.version>
 		<org.seleniumhq.selenium.version>2.45.0</org.seleniumhq.selenium.version>
-		<webdriver.chrome.driver>/usr/chromedriver</webdriver.chrome.driver>
+		<webdriver.chrome.driver>/usr/webdriver/chromedriver</webdriver.chrome.driver>
 
 		<runtime.appsvr.container.home>/usr/wildfly-${org.wildfly.version}</runtime.appsvr.container.home>
 		<runtime.appsvr.configuration.management.hostname>localhost</runtime.appsvr.configuration.management.hostname>
