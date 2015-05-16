@@ -38,25 +38,30 @@
 	<properties>
 		<!-- default plugin config start -->
 		<!-- maven-surefire-plugin, maven-failsafe-plugin -->
-		<argLine>-XX:MaxPermSize=1024m -Dwebdriver.chrome.driver=${webdriver.chrome.driver} -Druntime.websvr.hostname=${runtime.websvr.hostname} -Druntime.websvr.port=${runtime.websvr.port}</argLine>
+		<argLine>-XX:MaxPermSize=1024m -Dwebdriver.chrome.driver=${webdriver.chrome.driver} -Druntime.websvr.hostname=${runtime.websvr.hostname}
+			-Druntime.websvr.port=${runtime.websvr.port}</argLine>
 		<!-- spring-boot-maven-plugin -->
 		<run.jvmArguments>-XX:MaxPermSize=1024m</run.jvmArguments>
 		<!-- default plugin config end -->
-		
+
+		<!-- version start -->
 		<org.wildfly.version>8.2.0.Final</org.wildfly.version>
 		<org.seleniumhq.selenium.version>2.45.0</org.seleniumhq.selenium.version>
+		<com.lazerycode.jmeter.version>1.10.1</com.lazerycode.jmeter.version>
+		<!-- version end -->
+		
+		<!-- env start -->
 		<webdriver.chrome.driver>/usr/webdriver/chromedriver</webdriver.chrome.driver>
-
 		<runtime.appsvr.container.home>/usr/wildfly-${org.wildfly.version}</runtime.appsvr.container.home>
 		<runtime.appsvr.configuration.management.hostname>localhost</runtime.appsvr.configuration.management.hostname>
 		<runtime.appsvr.configuration.management.port>9990</runtime.appsvr.configuration.management.port>
 		<runtime.appsvr.configuration.management.username>username</runtime.appsvr.configuration.management.username>
 		<runtime.appsvr.configuration.management.password>password</runtime.appsvr.configuration.management.password>
 		<runtime.appsvr.configuration.domain.server-group>main-server-group</runtime.appsvr.configuration.domain.server-group>
-
 		<runtime.websvr.hostname>localhost</runtime.websvr.hostname>
 		<runtime.websvr.port>80</runtime.websvr.port>
-		
+		<!-- env end -->
+
 		<wildfly.deployment.name>${project.artifactId}.${project.packaging}</wildfly.deployment.name>
 	</properties>
 
@@ -99,6 +104,32 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 			</plugin>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>integration-test</goal>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>com.lazerycode.jmeter</groupId>
+				<artifactId>jmeter-maven-plugin</artifactId>
+				<version>${com.lazerycode.jmeter.version}</version>
+				<executions>
+					<execution>
+						<id>jmeter-tests</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>jmeter</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
@@ -121,88 +152,6 @@
 	</scm>
 
 	<profiles>
-
-		<profile>
-			<id>test.performance</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>com.lazerycode.jmeter</groupId>
-						<artifactId>jmeter-maven-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>jmeter-tests</id>
-								<phase>verify</phase>
-								<goals>
-									<goal>jmeter</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-
-		<profile>
-			<id>test.integration</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.wildfly.plugins</groupId>
-						<artifactId>wildfly-maven-plugin</artifactId>
-						<version>1.0.2.Final</version>
-						<executions>
-							<execution>
-								<id>pre-integration-test-deploy-only</id>
-								<phase>pre-integration-test</phase>
-								<goals>
-									<goal>deploy-only</goal>
-								</goals>
-							</execution>
-							<execution>
-								<id>post-integration-test-undeploy</id>
-								<phase>post-integration-test</phase>
-								<goals>
-									<goal>undeploy</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-failsafe-plugin</artifactId>
-						<executions>
-							<execution>
-								<goals>
-									<goal>integration-test</goal>
-									<goal>verify</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-
-		<profile>
-			<!-- When built in OpenShift the 'openshift' profile will be used when invoking mvn. -->
-			<!-- Use this profile for any OpenShift specific customization your app will need. -->
-			<!-- By default that is to put the resulting archive into the 'webapps' folder. -->
-			<!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
-			<id>openshift</id>
-			<build>
-				<plugins>
-					<plugin>
-						<artifactId>maven-war-plugin</artifactId>
-						<version>2.1.1</version>
-						<configuration>
-							<outputDirectory>webapps</outputDirectory>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-		
 		<!-- the execution will merge to main build -->
 		<profile>
 			<id>runtime.appsvr.wildfly.domain</id>
