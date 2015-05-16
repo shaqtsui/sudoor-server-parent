@@ -36,6 +36,7 @@
 	<packaging>pom</packaging>
 
 	<properties>
+		<jvm.argLine.heap>-XX:MaxPermSize=1024m</jvm.argLine.heap>
 		<org.wildfly.version>8.2.0.Final</org.wildfly.version>
 		<org.seleniumhq.selenium.version>2.45.0</org.seleniumhq.selenium.version>
 		<webdriver.chrome.driver>/usr/webdriver/chromedriver</webdriver.chrome.driver>
@@ -91,14 +92,14 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
-					<argLine>-XX:MaxPermSize=1024m</argLine>
+					<argLine>${jvm.argLine.heap}</argLine>
 				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<jvmArguments>-XX:MaxPermSize=1024m</jvmArguments>
+					<jvmArguments>${jvm.argLine.heap}</jvmArguments>
 				</configuration>
 			</plugin>
 		</plugins>
