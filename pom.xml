@@ -116,20 +116,6 @@
 				</executions>
 			</plugin>
 			<plugin>
-				<groupId>com.lazerycode.jmeter</groupId>
-				<artifactId>jmeter-maven-plugin</artifactId>
-				<version>${com.lazerycode.jmeter.version}</version>
-				<executions>
-					<execution>
-						<id>jmeter-tests</id>
-						<phase>verify</phase>
-						<goals>
-							<goal>jmeter</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
@@ -152,6 +138,29 @@
 	</scm>
 
 	<profiles>
+		<!-- put jmeter in profile, as it canot apply to project without folder: /src/test/jmeter -->
+		<profile>
+			<id>test.performance</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.lazerycode.jmeter</groupId>
+						<artifactId>jmeter-maven-plugin</artifactId>
+						<version>${com.lazerycode.jmeter.version}</version>
+						<executions>
+							<execution>
+								<id>jmeter-tests</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>jmeter</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	
 		<!-- the execution will merge to main build -->
 		<profile>
 			<id>runtime.appsvr.wildfly.domain</id>
