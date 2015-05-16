@@ -36,7 +36,13 @@
 	<packaging>pom</packaging>
 
 	<properties>
-		<jvm.argLine.heap>-XX:MaxPermSize=1024m</jvm.argLine.heap>
+		<!-- default plugin config start -->
+		<!-- maven-surefire-plugin, maven-surefire-plugin -->
+		<argLine>-XX:MaxPermSize=1024m -Dwebdriver.chrome.driver=${webdriver.chrome.driver} -Druntime.websvr.hostname=${runtime.websvr.hostname} -Druntime.websvr.port=${runtime.websvr.port}</argLine>
+		<!-- spring-boot-maven-plugin -->
+		<run.jvmArguments>-XX:MaxPermSize=1024m</run.jvmArguments>
+		<!-- default plugin config end -->
+		
 		<org.wildfly.version>8.2.0.Final</org.wildfly.version>
 		<org.seleniumhq.selenium.version>2.45.0</org.seleniumhq.selenium.version>
 		<webdriver.chrome.driver>/usr/webdriver/chromedriver</webdriver.chrome.driver>
@@ -91,16 +97,10 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<configuration>
-					<argLine>${jvm.argLine.heap}</argLine>
-				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<jvmArguments>${jvm.argLine.heap}</jvmArguments>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>
@@ -171,9 +171,6 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-failsafe-plugin</artifactId>
-						<configuration>
-							<argLine>-Dwebdriver.chrome.driver=${webdriver.chrome.driver} -Druntime.websvr.hostname=${runtime.websvr.hostname} -Druntime.websvr.port=${runtime.websvr.port}</argLine>
-						</configuration>
 						<executions>
 							<execution>
 								<goals>
