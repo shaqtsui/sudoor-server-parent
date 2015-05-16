@@ -10,11 +10,11 @@
 					
 				SDLC Config:
 					test.performance - in profile
-					test.integration
-						websvr runtime
-						appsvr runtime
-						selenium
-						
+					selenium IT
+				
+				Note:
+					In DSR, UT & IT are mixed & executed by maven-surefire-plugin so maven-failsafe-plugin not required
+
 	-->
 
 	<!-- The Basics -->
@@ -43,12 +43,12 @@
 		<com.lazerycode.jmeter.version>1.10.1</com.lazerycode.jmeter.version>
 		<!-- version end -->
 		
-		<!-- env start -->
+		<!-- test env (used by selenium) start -->
 		<webdriver.chrome.driver>/usr/webdriver/chromedriver</webdriver.chrome.driver>
 		<!-- no need to config runtime.appsvr.* as the app server is DSR -->
 		<runtime.websvr.hostname>localhost</runtime.websvr.hostname>
 		<runtime.websvr.port>80</runtime.websvr.port>
-		<!-- env end -->
+		<!-- test env (used by selenium) end -->
 	</properties>
 
 	<dependencies>
@@ -70,8 +70,6 @@
 	<!-- Build Settings -->
 	<build>
 		<plugins>
-			<!-- maven-surefire-plugin already declared in parent -->
-			<!-- maven-failsafe-plugin not required as we are using DSR(use surefire instead) -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
