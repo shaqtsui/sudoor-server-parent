@@ -7,20 +7,14 @@
 			
 			Parent POM ONLY maintain web project:
 				Project Info
-
-				Tool:
-					wildfly-maven-plugin
-						appsvr runtime
 					
 				SDLC Config:
-					test.performance
+					test.performance - in profile
 					test.integration
 						websvr runtime
 						appsvr runtime
 						selenium
 						
-					openshift
-
 	-->
 
 	<!-- The Basics -->
@@ -45,24 +39,17 @@
 		<!-- default plugin config end -->
 
 		<!-- version start -->
-		<org.wildfly.version>8.2.0.Final</org.wildfly.version>
 		<org.seleniumhq.selenium.version>2.45.0</org.seleniumhq.selenium.version>
 		<com.lazerycode.jmeter.version>1.10.1</com.lazerycode.jmeter.version>
 		<!-- version end -->
 		
 		<!-- env start -->
 		<webdriver.chrome.driver>/usr/webdriver/chromedriver</webdriver.chrome.driver>
-		<runtime.appsvr.container.home>/usr/wildfly-${org.wildfly.version}</runtime.appsvr.container.home>
-		<runtime.appsvr.configuration.management.hostname>localhost</runtime.appsvr.configuration.management.hostname>
-		<runtime.appsvr.configuration.management.port>9990</runtime.appsvr.configuration.management.port>
-		<runtime.appsvr.configuration.management.username>username</runtime.appsvr.configuration.management.username>
-		<runtime.appsvr.configuration.management.password>password</runtime.appsvr.configuration.management.password>
-		<runtime.appsvr.configuration.domain.server-group>main-server-group</runtime.appsvr.configuration.domain.server-group>
+		<runtime.appsvr.hostname>localhost</runtime.appsvr.hostname>
+		<runtime.appsvr.port>8080</runtime.appsvr.port>
 		<runtime.websvr.hostname>localhost</runtime.websvr.hostname>
 		<runtime.websvr.port>80</runtime.websvr.port>
 		<!-- env end -->
-
-		<wildfly.deployment.name>${project.artifactId}.${project.packaging}</wildfly.deployment.name>
 	</properties>
 
 	<dependencies>
@@ -84,25 +71,7 @@
 	<!-- Build Settings -->
 	<build>
 		<plugins>
-			<!-- provide both default-cli & customized execution -->
-			<plugin>
-				<groupId>org.wildfly.plugins</groupId>
-				<artifactId>wildfly-maven-plugin</artifactId>
-				<version>1.0.2.Final</version>
-				<configuration>
-					<jbossHome>${runtime.appsvr.container.home}</jbossHome>
-					<hostname>${runtime.appsvr.configuration.management.hostname}</hostname>
-					<port>${runtime.appsvr.configuration.management.port}</port>
-					<username>${runtime.appsvr.configuration.management.username}</username>
-					<password>${runtime.appsvr.configuration.management.password}</password>
-					<name>${wildfly.deployment.name}</name>
-				</configuration>
-			</plugin>
-			<!-- overwrite parent config to change JVM options -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-			</plugin>
+			<!-- maven-surefire-plugin already declared in parent -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-failsafe-plugin</artifactId>
@@ -160,28 +129,6 @@
 				</plugins>
 			</build>
 		</profile>
-	
-		<!-- the execution will merge to main build -->
-		<profile>
-			<id>runtime.appsvr.wildfly.domain</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.wildfly.plugins</groupId>
-						<artifactId>wildfly-maven-plugin</artifactId>
-						<version>1.0.2.Final</version>
-						<configuration>
-							<domain>
-								<server-groups>
-									<server-group>${runtime.appsvr.configuration.domain.server-group}</server-group>
-								</server-groups>
-							</domain>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-
 	</profiles>
 
 </project>
