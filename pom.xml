@@ -97,6 +97,9 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<jvmArguments>-XX:MaxPermSize=1024m</jvmArguments>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
