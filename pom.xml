@@ -31,7 +31,7 @@
 
 	<properties>
 		<!-- default plugin config start -->
-		<!-- maven-surefire-plugin, maven-failsafe-plugin -->
+		<!-- maven-surefire-plugin -->
 		<argLine>-XX:MaxPermSize=1024m -Dwebdriver.chrome.driver=${webdriver.chrome.driver} -Druntime.websvr.hostname=${runtime.websvr.hostname}
 			-Druntime.websvr.port=${runtime.websvr.port}</argLine>
 		<!-- spring-boot-maven-plugin -->
@@ -71,18 +71,7 @@
 	<build>
 		<plugins>
 			<!-- maven-surefire-plugin already declared in parent -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-failsafe-plugin</artifactId>
-				<executions>
-					<execution>
-						<goals>
-							<goal>integration-test</goal>
-							<goal>verify</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
+			<!-- maven-failsafe-plugin not required as we are using DSR(use surefire instead) -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
