@@ -41,6 +41,7 @@
 		<!-- version start -->
 		<org.seleniumhq.selenium.version>2.45.0</org.seleniumhq.selenium.version>
 		<com.lazerycode.jmeter.version>1.10.1</com.lazerycode.jmeter.version>
+		<org.springframework.springloaded.version>1.2.3.RELEASE</org.springframework.springloaded.version>
 		<!-- version end -->
 		
 		<!-- test env (used by selenium) start -->
@@ -73,6 +74,13 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<dependencies>
+					<dependency>
+						<groupId>org.springframework</groupId>
+						<artifactId>springloaded</artifactId>
+						<version>${org.springframework.springloaded.version}</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 		</plugins>
 	</build>
