@@ -62,6 +62,7 @@
 		<relativePath />
 	</parent>
 
+	<groupId>net.gplatform</groupId>
 	<artifactId>sudoor-server-parent</artifactId>
 	<version>1.0.18-SNAPSHOT</version>
 	<packaging>pom</packaging>
