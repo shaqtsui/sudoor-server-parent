@@ -51,6 +51,9 @@
 				
 				Note:
 					In DSR, UT & IT are mixed & executed by maven-surefire-plugin so maven-failsafe-plugin not required
+					
+			Run Selenium out of maven:
+				-Dwebdriver.chrome.driver=/usr/webdriver/chromedriver -Druntime.websvr.hostname=localhost -Druntime.websvr.port=8080
 
 	-->
 
