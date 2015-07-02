@@ -79,8 +79,7 @@
 		<!-- used by license-maven-plugin -->
 		<license.licenseName>gpl_v2</license.licenseName>
 		<!-- used by maven-surefire-plugin -->
-		<argLine>-XX:MaxPermSize=1024m -Djava.net.preferIPv4Stack=true -Dwebdriver.chrome.driver=${webdriver.chrome.driver} -Druntime.websvr.hostname=${runtime.websvr.hostname}
-			-Druntime.websvr.port=${runtime.websvr.port}</argLine>
+		<argLine>-XX:MaxPermSize=1024m -Djava.net.preferIPv4Stack=true -Dwebdriver.chrome.driver=${webdriver.chrome.driver} -Druntime.websvr.hostname=${runtime.websvr.hostname} -Druntime.websvr.port=${runtime.websvr.port}</argLine>
 		<!-- used by spring-boot-maven-plugin -->
 		<run.jvmArguments>-XX:MaxPermSize=1024m</run.jvmArguments>
 
