@@ -116,6 +116,19 @@
 	<!-- Build Settings -->
 	<build>
 		<plugins>
+			<!-- cannot be used now due to network issue -->
+<!-- 			<plugin> -->
+<!-- 				<groupId>com.lazerycode.selenium</groupId> -->
+<!-- 				<artifactId>driver-binary-downloader-maven-plugin</artifactId> -->
+<!-- 				<version>1.0.7</version> -->
+<!-- 				<executions> -->
+<!-- 					<execution> -->
+<!-- 						<goals> -->
+<!-- 							<goal>selenium</goal> -->
+<!-- 						</goals> -->
+<!-- 					</execution> -->
+<!-- 				</executions> -->
+<!-- 			</plugin> -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-release-plugin</artifactId>
