@@ -97,6 +97,7 @@
 	</properties>
 
 	<dependencies>
+		<!-- WARN: driver needed when use selenium test. Path specified in webdriver.chrome.driver -->
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
